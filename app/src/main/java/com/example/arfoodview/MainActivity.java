@@ -5,10 +5,15 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +45,23 @@ public class MainActivity extends AppCompatActivity {
             Log.d("food", "Runtime permissions not granted");
             ActivityCompat.requestPermissions(this, RUNTIME_PERMISSIONS, runtime_request);
         }
+
+        final ImageButton settingsButton = findViewById(R.id.settingsButton);
+
+
+
+        //Settings button   MainActivity -> Settings
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            // When user clicks start button do this
+            public void onClick(View view) {
+                Log.d("RoadRageKiller", "Clicked Settings Button");
+
+                
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
