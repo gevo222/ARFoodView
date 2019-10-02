@@ -78,4 +78,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+public static void Count(){
+        // this is just a test for Git commit
+}
 }
