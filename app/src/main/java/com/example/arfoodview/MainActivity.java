@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("RoadRageKiller", "Clicked Settings Button");
 
-                
+
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
@@ -81,5 +81,5 @@ public class MainActivity extends AppCompatActivity {
 public static void Count(){
         // this is just a test for Git commit
     // this is ron's test... change if need be.
-}
+    }
 }
