@@ -11,10 +11,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
-
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 1;
 
@@ -45,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         final ImageButton settingsButton = findViewById(R.id.settingsButton);
-        final ImageButton cameraButton = findViewById(R.id.cameraButton);
+
+
+
         //Settings button   MainActivity -> Settings
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,20 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Camera button   MainActivity -> Camera
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            // When user clicks start button do this
-            public void onClick(View view) {
-                Log.d("RoadRageKiller", "Clicked camera Button");
-
-
-                Intent intent = new Intent(MainActivity.this, Ar.class);
-                startActivity(intent);
-            }
-        });
     }
-
 
     private static boolean hasPermissions(Context context, String... permissions) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && permissions != null) {
@@ -87,4 +78,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+public static void Count(){
+        // this is just a test for Git commit
+    // this is ron's test... change if need be.
+}
 }
