@@ -21,7 +21,7 @@ public class Ar extends AppCompatActivity {
          arFragment =(ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) ->{
             Anchor anchor = hitResult.createAnchor();
-           ModelRenderable.builder().setSource(this, Uri.parse("pizza.sfb")).build().thenAccept(modelRenderable -> addModelToScene(anchor,modelRenderable)).exceptionally(throwable ->{
+           ModelRenderable.builder().setSource(this, Uri.parse("model.sfb")).build().thenAccept(modelRenderable -> addModelToScene(anchor,modelRenderable)).exceptionally(throwable ->{
                AlertDialog.Builder builder = new AlertDialog.Builder(this);
               builder.setMessage(throwable.getMessage()).show();
              return null;
@@ -33,7 +33,7 @@ public class Ar extends AppCompatActivity {
         TransformableNode transformableNode = new TransformableNode(arFragment.getTransformationSystem());
         transformableNode.setParent(anchorNode);
         transformableNode.setRenderable(modelRenderable);
-        arFragment.getArSceneView().getScene().onAddChild(anchorNode);
+        arFragment.getArSceneView().getScene().addChild(anchorNode);
         transformableNode.select();
     }
 }
