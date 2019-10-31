@@ -33,6 +33,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.google.android.material:material:1.0.0'
 }
 
 
@@ -40,3 +41,9 @@ sceneform.asset('sampleDataDirectory/pizza.obj',
         'default',
         'sampleDataDirectory/pizza.sfa',
         'src/main/assets/pizza')
+
+
+sceneform.asset('sampleDataDirectory/fish.glb',
+        'default',
+        'sampleDataDirectory/fish.sfa',
+        'src/main/assets/fish')

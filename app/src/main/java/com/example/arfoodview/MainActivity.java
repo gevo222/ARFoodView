@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         final ImageButton settingsButton = findViewById(R.id.settingsButton);
         final ImageButton cameraButton = findViewById(R.id.cameraButton);
-
+        final ImageButton helpButton = findViewById(R.id.helpButton);
 
         //Settings button   MainActivity -> Settings
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +66,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             // When user clicks start button do this
             public void onClick(View view) {
-                Log.d("RoadRageKiller", "Clicked Settings Button");
+                Log.d("RoadRageKiller", "Clicked Camera Button");
                 Intent intent = new Intent(MainActivity.this, Ar.class);
+                startActivity(intent);
+            }
+        });
+
+        //Help button
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            // When user clicks start button do this
+            public void onClick(View view) {
+                Log.d("RoadRageKiller", "Clicked Help Button");
+                Intent intent = new Intent(MainActivity.this, helpActivity.class);
                 startActivity(intent);
             }
         });

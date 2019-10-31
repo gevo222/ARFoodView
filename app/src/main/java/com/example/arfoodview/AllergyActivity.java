@@ -33,7 +33,7 @@ public class AllergyActivity extends AppCompatActivity {
         list.add("Nut");
         list.add("Soybean");
         list.add("Wheat");
-        list.add("School");
+        list.add("School");//lol
         list.add("i dunno");
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list);
