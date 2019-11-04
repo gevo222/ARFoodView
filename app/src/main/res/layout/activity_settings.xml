@@ -7,7 +7,7 @@
     tools:context=".SettingsActivity">
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/AllegiesSwitch"
         android:layout_width="234dp"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
@@ -29,7 +29,7 @@
         android:text="edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/switch1"
+        app:layout_constraintStart_toEndOf="@+id/AllegiesSwitch"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,8 @@
 package com.example.arfoodview;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import android.content.SharedPreferences;
@@ -12,7 +10,6 @@ import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
-import android.widget.TextView;
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -32,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
         preferences = getSharedPreferences("PREFS", 0);
         switchState1 = preferences.getBoolean("switch1", false);
 
-        switch1 = findViewById(R.id.switch1);
+        switch1 = findViewById(R.id.AllegiesSwitch);
         edit = findViewById(R.id.b_edit);
         switch1.setChecked(switchState1);
 
