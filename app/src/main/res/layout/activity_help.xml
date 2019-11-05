@@ -35,18 +35,30 @@
             android:hint="Enter your email"
             android:inputType="textEmailAddress" />
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Options:" />
+
         <Spinner
             android:id="@+id/spinner1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog" />
 
         <EditText
             android:id="@+id/textDescription"
             android:layout_width="match_parent"
             android:layout_height="125dp"
+            android:cursorVisible="true"
             android:ems="10"
             android:hint="Description:"
-            android:inputType="text" />
+            android:inputType="text"
+            android:isScrollContainer="true"
+            android:selectAllOnFocus="false"
+            android:singleLine="false"
+            android:textAlignment="textStart" />
 
         <Button
             android:id="@+id/submit_button"

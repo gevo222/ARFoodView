@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AR Food View</string>
     <string-array name="options">
-        <item>Options</item>
+        <item>Choose</item>
         <item>Restaurant not found</item>
         <item>AR did not work</item>
         <item>app crashed</item>

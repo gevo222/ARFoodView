@@ -52,8 +52,12 @@ public class helpActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String text = parent.getItemAtPosition(position).toString();
-        textDescription.setText(text);
+        if(text.equals("Choose")){
+            // do nothing
+        }else {
+            textDescription.append("\n"+ text);
 
+        }
        // Toast.makeText(parent.getContext(),text, Toast.LENGTH_SHORT).show();
     }// end of Onitemselected
 
