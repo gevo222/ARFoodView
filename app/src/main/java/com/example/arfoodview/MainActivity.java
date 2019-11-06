@@ -53,11 +53,13 @@ public class MainActivity extends AppCompatActivity {
         //Settings button   MainActivity -> Settings
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            // When user clicks start button do this
+            // When user settings start button do this
             public void onClick(View view) {
                 Log.d("RoadRageKiller", "Clicked Settings Button");
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
+                //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
+
             }
         });
 
