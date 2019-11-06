@@ -6,12 +6,12 @@
     tools:context=".helpActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_height="wrap_content"
+        android:layout_width="311dp"
+        android:layout_height="370dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="122dp">
+        android:layout_marginTop="122dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView4"
