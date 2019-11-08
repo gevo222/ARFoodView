@@ -10,4 +10,8 @@
         <item>General support</item>
         <item>Add more options</item>
     </string-array>
+    <string-array name="Restaurant">
+        <item>SunnyWay</item>
+
+    </string-array>
 </resources>
