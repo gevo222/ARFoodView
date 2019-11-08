@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             // When user settings start button do this
             public void onClick(View view) {
                 Log.d("RoadRageKiller", "Clicked Settings Button");
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(MainActivity.this, Infor_window.class);
                 startActivity(intent);
                 //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
 
