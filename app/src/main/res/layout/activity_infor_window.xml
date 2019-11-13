@@ -11,24 +11,22 @@
         android:id="@+id/taDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="78dp"
+        android:layout_marginTop="15dp"
         android:text="Display"
-        app:layout_constraintEnd_toStartOf="@+id/lv1"
-        app:layout_constraintStart_toEndOf="@+id/transFat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NaDisplay" />
 
     <TextView
         android:id="@+id/NaDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginStart="2dp"
         android:layout_marginTop="17dp"
-        android:layout_marginEnd="78dp"
         android:text="Display"
-        app:layout_constraintEnd_toStartOf="@+id/lv1"
-        app:layout_constraintStart_toEndOf="@+id/sodiumInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/proteinDisplay" />
 
     <TextView
@@ -36,21 +34,21 @@
         android:layout_width="66dp"
         android:layout_height="28dp"
         android:layout_marginTop="34dp"
-        android:layout_marginEnd="80dp"
         android:text="display"
-        app:layout_constraintEnd_toStartOf="@+id/lv1"
-        app:layout_constraintStart_toEndOf="@+id/caloryInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoName8" />
 
     <TextView
         android:id="@+id/infoName8"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginTop="33dp"
         android:text="display"
-        app:layout_constraintEnd_toStartOf="@+id/lv1"
-        app:layout_constraintStart_toEndOf="@+id/infoName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
@@ -105,25 +103,23 @@
         android:id="@+id/FatDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="238dp"
-        android:layout_marginBottom="95dp"
         android:text="Display"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fatInfo"
-        app:layout_constraintTop_toBottomOf="@+id/taDisplay" />
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taDisplay"
+        app:layout_constraintVertical_bias="0.188" />
 
     <TextView
         android:id="@+id/proteinDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="78dp"
+        android:layout_marginTop="19dp"
         android:text="Display"
-        app:layout_constraintEnd_toStartOf="@+id/lv1"
-        app:layout_constraintStart_toEndOf="@+id/proteinInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sugarDisplay" />
 
     <TextView
@@ -179,11 +175,11 @@
         android:id="@+id/sugarDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginTop="21dp"
         android:text="Display"
-        app:layout_constraintEnd_toStartOf="@+id/lv1"
-        app:layout_constraintStart_toEndOf="@+id/sugarInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calDisplay" />
 
     <TextView
@@ -231,22 +227,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ArButton" />
 
-    <ListView
-        android:id="@+id/lv1"
-        android:layout_width="109dp"
-        android:layout_height="309dp"
-        android:layout_below="@+id/searchView"
-        android:layout_marginStart="146dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="49dp"
-        android:layout_marginBottom="28dp"
-        android:divider="#ad5"
-        android:dividerHeight="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/HelpButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/proteinInfo"
-        app:layout_constraintTop_toBottomOf="@+id/ArButton" />
-
     <TextView
         android:id="@+id/infoName"
         android:layout_width="66dp"
@@ -269,9 +249,20 @@
         android:layout_marginTop="97dp"
         android:layout_marginEnd="3dp"
         android:text="Ingridients:"
-        app:layout_constraintBottom_toTopOf="@+id/lv1"
         app:layout_constraintEnd_toStartOf="@+id/ArButton"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <ListView
+        android:layout_width="132dp"
+        android:layout_height="291dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/HelpButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingredientsInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

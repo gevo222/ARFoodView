@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 1;
 
     //This is for requesting permissions
@@ -32,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
     };
 
     int runtime_request = 1; //used in .requestPermissions()   for error message
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DataBaseHelper myDB = new DataBaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -49,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton settingsButton = findViewById(R.id.settingsButton);
         final ImageButton cameraButton = findViewById(R.id.cameraButton);
         final ImageButton helpButton = findViewById(R.id.helpButton);
+
+        // initiate the database
+       // myDB = new DataBaseHelper(this);
 
         //Settings button   MainActivity -> Settings
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }//end of onCreate
 
     private static boolean hasPermissions(Context context, String... permissions) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && permissions != null) {

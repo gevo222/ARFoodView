@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" addBOMForNewFiles="with NO BOM" />
+  <component name="Encoding">
+    <file url="file://$USER_HOME$/Documents/AndroidStudio/DeviceExplorer/motorola-moto_g_6__play-ZY323W5LJB/data/data/com.example.arfoodview/databases/Restaurants.db" charset="windows-1252" />
+  </component>
 </project>
