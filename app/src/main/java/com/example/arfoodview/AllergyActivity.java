@@ -1,19 +1,18 @@
 package com.example.arfoodview;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.SearchView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -43,7 +42,7 @@ public class AllergyActivity extends AppCompatActivity {
         list.add("Nut");
         list.add("Soybean");
         list.add("Wheat");
-        list.add("School");//lol
+        list.add("School");  //lol
         list.add("i dunno");
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list);

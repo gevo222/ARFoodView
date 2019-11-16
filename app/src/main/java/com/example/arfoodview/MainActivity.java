@@ -1,8 +1,5 @@
 package com.example.arfoodview;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -13,11 +10,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import java.util.ArrayList;
+
+import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
+import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 1;
+
+    //public static String sel_rest = "";
 
     //This is for requesting permissions
     private static final String[] RUNTIME_PERMISSIONS = {
@@ -31,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
     };
 
     int runtime_request = 1; //used in .requestPermissions()   for error message
+
+    // Arraylist
+    ArrayList<String> restaurant = new ArrayList<>();
+    SpinnerDialog spinnerDialog;
+    Button btnShow;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         DataBaseHelper myDB = new DataBaseHelper(this);
@@ -87,7 +100,57 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+        // Restaurant Array
+        initRestaurant();
+        spinnerDialog = new SpinnerDialog(MainActivity.this,restaurant,"Select Restaurant");
+        spinnerDialog.bindOnSpinerListener(new OnSpinerItemClick() {
+            @Override
+            public void onClick(String rest, int position) {
+
+                Toast.makeText(MainActivity.this, "Selected: "+rest, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, Menu_Window.class);
+                intent.putExtra("Rest_name", rest);
+                startActivity(intent);
+                //sel_rest = rest;
+                /*if(rest.equals("SunnyWay")) {
+                    Intent intent = new Intent(MainActivity.this, restActivity.class);
+                    startActivity(intent);
+                }*/
+            }
+        });
+
+
+
+
+        btnShow = (Button)findViewById(R.id.btnShow);
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+             public void onClick(View v) {
+                spinnerDialog.showSpinerDialog();
+                //Intent intent = new Intent(MainActivity.this, restActivity.class);
+                //startActivity(intent);
+            }
+        });
+
     }//end of onCreate
+
+    private void initRestaurant() {
+        restaurant.add("Sushi-Ron");
+        restaurant.add("Gevo's Gravy!");
+        restaurant.add("Sunny Side Up");
+        restaurant.add("CinnaRon!");
+        restaurant.add("Munchin Mo'Nuts");
+        restaurant.add("SunnyWay");
+        restaurant.add("Give Me Mo!");
+        restaurant.add("Gevordo's Pizzeria");
+        restaurant.add("Sunny's Philadelphia Cheesecakes");
+        restaurant.add("Mo' than Waffles");
+        //for(int i = 0; i < 100; i++) {
+        //   restaurant.add("Restaurant "+(i+1));
+        //}
+    }
 
     private static boolean hasPermissions(Context context, String... permissions) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && permissions != null) {

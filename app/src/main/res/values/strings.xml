@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AR Food View</string>
+    <string name="app_name">VisiFood</string>
     <string-array name="options">
         <item>Choose</item>
         <item>Restaurant not found</item>
