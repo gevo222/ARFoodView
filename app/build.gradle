@@ -48,7 +48,3 @@ sceneform.asset('sampleDataDirectory/pizza.obj',
         'src/main/assets/pizza')
 
 
-sceneform.asset('sampleDataDirectory/fish.glb',
-        'default',
-        'sampleDataDirectory/fish.sfa',
-        'src/main/assets/fish')
