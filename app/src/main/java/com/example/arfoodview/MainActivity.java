@@ -12,8 +12,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -57,13 +66,33 @@ public class MainActivity extends AppCompatActivity {
             Log.d("food", "Runtime permissions not granted");
             ActivityCompat.requestPermissions(this, RUNTIME_PERMISSIONS, runtime_request);
         }
-
+        final String TAG = "firebaselog";
         final ImageButton settingsButton = findViewById(R.id.settingsButton);
         final ImageButton cameraButton = findViewById(R.id.cameraButton);
         final ImageButton helpButton = findViewById(R.id.helpButton);
 
         // initiate the database
        // myDB = new DataBaseHelper(this);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                DocumentReference docRef = db.collection("restaurants/SunnyWay/food").document("pancakes");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        Log.d(TAG, "DocumentSnapshot data: " + document.get("calories"));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
 
         //Settings button   MainActivity -> Settings
         settingsButton.setOnClickListener(new View.OnClickListener() {
