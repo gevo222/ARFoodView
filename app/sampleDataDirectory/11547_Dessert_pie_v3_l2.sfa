@@ -1,0 +1,69 @@
+{
+  materials: [
+    {
+      name: '02___Plate',
+      parameters: [
+        {
+          baseColor: null,
+        },
+        {
+          baseColorTint: [
+            0.15690000000000001,
+            0.058799999999999998,
+            0.058799999999999998,
+            1,
+          ],
+        },
+        {
+          metallic: 1,
+        },
+        {
+          roughness: 0.22941600000000001,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+    {
+      name: '01___Dessert_pie',
+      parameters: [
+        {
+          baseColor: null,
+        },
+        {
+          baseColorTint: [
+            0.98819999999999997,
+            0.98819999999999997,
+            0.98819999999999997,
+            1,
+          ],
+        },
+        {
+          metallic: 1,
+        },
+        {
+          roughness: 0.23904600000000001,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampleDataDirectory/11547_Dessert_pie_v3_l2.obj',
+    name: '11547_Dessert_pie_v3_l2',
+    recenter: 'root',
+    scale: 0.18614700000000001,
+  },
+  version: '0.54:2',
+}

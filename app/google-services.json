@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "90470368910",
+    "firebase_url": "https://arfoodview-b5823.firebaseio.com",
+    "project_id": "arfoodview-b5823",
+    "storage_bucket": "arfoodview-b5823.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90470368910:android:cf3ee36e84ac8a35f56bdf",
+        "android_client_info": {
+          "package_name": "com.example.arfoodview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90470368910-m047vnrirp2j487slin7l298pmn6ja2b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.arfoodview",
+            "certificate_hash": "8877b5c5ff54504abb3590ddf0816183e7d32c18"
+          }
+        },
+        {
+          "client_id": "90470368910-v8jn5slvb4hgb9qmoiabnj3g91ep3o1c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.arfoodview",
+            "certificate_hash": "02c54c7e980f538bfe13955fed87dbfef87ead22"
+          }
+        },
+        {
+          "client_id": "90470368910-6tuprtqti97s1qhhd5im84c70h0h40og.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1Z8NRWqDK1UB5kpBkkq-JjYZlAzaN-hI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90470368910-6tuprtqti97s1qhhd5im84c70h0h40og.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
