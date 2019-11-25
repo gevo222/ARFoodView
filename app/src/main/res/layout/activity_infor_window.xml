@@ -11,45 +11,47 @@
         android:id="@+id/taDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="22dp"
         android:text="Display"
+        app:layout_constraintBottom_toTopOf="@+id/FatDisplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NaDisplay" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/NaDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginBottom="16dp"
         android:text="Display"
+        app:layout_constraintBottom_toTopOf="@+id/taDisplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/proteinDisplay" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/calDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginBottom="21dp"
         android:text="display"
+        app:layout_constraintBottom_toTopOf="@+id/sugarDisplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoName8" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/infoName8"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="16dp"
         android:text="display"
+        app:layout_constraintBottom_toTopOf="@+id/calDisplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.315"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.028" />
 
     <TextView
         android:id="@+id/proteinInfo"
@@ -69,10 +71,11 @@
         android:layout_height="28dp"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="334dp"
-        android:layout_marginBottom="95dp"
+        android:layout_marginBottom="20dp"
         android:text="Fat"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/CarbsInfo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -103,24 +106,23 @@
         android:id="@+id/FatDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
+        android:layout_marginBottom="20dp"
         android:text="Display"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taDisplay"
-        app:layout_constraintVertical_bias="0.188" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/proteinDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginTop="19dp"
+        android:layout_marginBottom="16dp"
         android:text="Display"
+        app:layout_constraintBottom_toTopOf="@+id/NaDisplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sugarDisplay" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/sugarInfo"
@@ -175,12 +177,12 @@
         android:id="@+id/sugarDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginBottom="18dp"
         android:text="Display"
+        app:layout_constraintBottom_toTopOf="@+id/proteinDisplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calDisplay" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
@@ -264,5 +266,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsInfo" />
+
+    <TextView
+        android:id="@+id/CarbsInfo"
+        android:layout_width="67dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="48dp"
+        android:text="Carbs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="48dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
