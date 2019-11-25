@@ -66,7 +66,7 @@ public class helpActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }// end of onNothing
     public void appendText(String text){
-        Toast.makeText(helpActivity.this, text, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(helpActivity.this, text, Toast.LENGTH_SHORT).show();
     }
 }//end of helpactivity cladd
 //<Spinner

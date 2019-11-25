@@ -13,7 +13,7 @@
         android:layout_height="28dp"
         android:layout_marginBottom="22dp"
         android:text="Display"
-        app:layout_constraintBottom_toTopOf="@+id/FatDisplay"
+        app:layout_constraintBottom_toTopOf="@+id/fatDisplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.315"
         app:layout_constraintStart_toStartOf="parent" />
@@ -41,10 +41,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/infoName8"
+        android:id="@+id/displayFoodName"
         android:layout_width="66dp"
         android:layout_height="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:text="display"
         app:layout_constraintBottom_toTopOf="@+id/calDisplay"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,12 +103,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/FatDisplay"
+        android:id="@+id/fatDisplay"
         android:layout_width="66dp"
         android:layout_height="28dp"
         android:layout_marginBottom="20dp"
         android:text="Display"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toTopOf="@+id/carbsDisplay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.315"
         app:layout_constraintStart_toStartOf="parent" />
@@ -255,31 +255,20 @@
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-    <ListView
-        android:layout_width="132dp"
-        android:layout_height="291dp"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/HelpButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredientsInfo" />
-
     <TextView
         android:id="@+id/CarbsInfo"
         android:layout_width="67dp"
         android:layout_height="31dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="304dp"
+        android:layout_marginBottom="52dp"
         android:text="Carbs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/carbsDisplay"
         android:layout_width="60dp"
         android:layout_height="30dp"
         android:layout_marginBottom="48dp"
@@ -288,5 +277,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Recycler1"
+        android:layout_width="149dp"
+        android:layout_height="272dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="6dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/HelpButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/taDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/ingredientsInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

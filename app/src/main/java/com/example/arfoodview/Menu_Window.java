@@ -17,6 +17,11 @@ public class Menu_Window extends AppCompatActivity {
     ListView listView;
     ArrayList<String> dish;
     ArrayAdapter<String > adapter;
+//    // public onstructor
+//    public Menu_Window(){
+//
+//        // this will bdo nothing.
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
