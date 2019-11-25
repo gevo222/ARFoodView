@@ -12,24 +12,24 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+
+import javax.annotation.Nullable;
 
 import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 
 public class MainActivity extends AppCompatActivity {
+
 
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 1;
 
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         // initiate the database
        // myDB = new DataBaseHelper(this);
+        /*
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                 DocumentReference docRef = db.collection("restaurants/SunnyWay/food").document("pancakes");
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
-        });
+        });*/
 
 
         //Settings button   MainActivity -> Settings
@@ -166,6 +167,27 @@ public class MainActivity extends AppCompatActivity {
     }//end of onCreate
 
     private void initRestaurant() {
+
+        String TAG = "sunny";
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("restaurants").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException e) {
+
+                if(e != null) {
+                    Log.d(TAG, "error: " + e.getMessage());
+                }
+
+                for(DocumentSnapshot doc: documentSnapshots) {
+                    String restName = doc.getId();
+                    restaurant.add(restName);
+                }
+            }
+        });
+
+/*
         restaurant.add("Sushi-Ron");
         restaurant.add("Gevo's Gravy!");
         restaurant.add("Sunny Side Up");
@@ -178,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         restaurant.add("Mo' than Waffles");
         //for(int i = 0; i < 100; i++) {
         //   restaurant.add("Restaurant "+(i+1));
-        //}
+        //}*/
     }
 
     private static boolean hasPermissions(Context context, String... permissions) {
