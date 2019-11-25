@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             // When user settings start button do this
             public void onClick(View view) {
-                Log.d("RoadRageKiller", "Clicked Settings Button");
-                Intent intent = new Intent(MainActivity.this, Infor_window.class);
+                Log.d("VisiFood", "Clicked Settings Button");
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
                 //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
 
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             // When user clicks start button do this
             public void onClick(View view) {
-                Log.d("RoadRageKiller", "Clicked Camera Button");
+                Log.d("VisiFood", "Clicked Camera Button");
                 Intent intent = new Intent(MainActivity.this, Ar.class);
                 startActivity(intent);
             }
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             // When user clicks start button do this
             public void onClick(View view) {
-                Log.d("RoadRageKiller", "Clicked Help Button");
+                Log.d("VisiFood", "Clicked Help Button");
                 Intent intent = new Intent(MainActivity.this, helpActivity.class);
                 startActivity(intent);
             }
