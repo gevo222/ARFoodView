@@ -278,16 +278,17 @@
         app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Recycler1"
+    <TextView
+        android:id="@+id/textArea"
         android:layout_width="149dp"
-        android:layout_height="272dp"
-        android:layout_marginStart="59dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="6dp"
-        android:background="@android:color/darker_gray"
+        android:layout_height="270dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toTopOf="@+id/HelpButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/taDisplay"
         app:layout_constraintTop_toBottomOf="@+id/ingredientsInfo" />
 

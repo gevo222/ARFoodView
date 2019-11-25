@@ -42,6 +42,7 @@ public class Infor_window extends AppCompatActivity{
     TextView fatData;
     TextView carbsData;
     TextView calories;
+    TextView ings;
     ListView ingredients;
     ArrayList<String>  ing = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
@@ -59,9 +60,15 @@ public class Infor_window extends AppCompatActivity{
         transFatData = (TextView)findViewById(R.id.taDisplay);
         fatData = (TextView)findViewById(R.id.fatDisplay);
         carbsData = (TextView)findViewById(R.id.carbsDisplay);
+        ings = (TextView)findViewById(R.id.textArea);
+
        // ingredients = (ListView)findViewById(R.id.AllDisplay);
 //        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 //        ingredients.setAdapter(arrayAdapter);
+        //texting
+        String[] test;
+        test = new String[]{"apple", "cinnamont"};
+
 
         DocumentReference docRef = db.collection("restaurants/SunnyWay/food").document(itemChosen);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -82,7 +89,13 @@ public class Infor_window extends AppCompatActivity{
                         fatData.setText(document.getString("fat"));
                         carbsData.setText(document.getString("carbs"));
                        // ingredients.setAdapter(arrayAdapter);
-
+                        for(String str : ing){
+                            if(true) { // need to work on this
+                                ings.append("\n" + str);
+                            }else{
+                                ings.append("\n" + str);
+                            }
+                        }
                     } else {
                         Log.d(TAG, "No such document");
                     }
