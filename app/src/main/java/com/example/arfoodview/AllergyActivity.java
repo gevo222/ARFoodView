@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -12,9 +13,20 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class AllergyActivity extends AppCompatActivity {
 
@@ -23,11 +35,13 @@ public class AllergyActivity extends AppCompatActivity {
     ArrayList<String> list;
     ArrayList<String> allergies;
     ArrayAdapter<String > adapter;
-    Intent intent = new Intent();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String TAG = "firebaseallergies";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allergy);
+
 
         searchView = (SearchView) findViewById(R.id.searchView);
         listView = (ListView) findViewById(R.id.lv1);
@@ -45,9 +59,48 @@ public class AllergyActivity extends AppCompatActivity {
         list.add("School");  //lol
         list.add("i dunno");
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list);
+        // update allergies from database
+        DocumentReference docRef = db.collection("users").document("temporary");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        allergies = (ArrayList<String>) document.get("allergies");
+                        Log.d(TAG, "DocumentSnapshot data: " + document.get("allergies"));
+                        Log.d(TAG, ""+allergies.contains("Peanuts"));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list) { @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view =super.getView(position, convertView, parent);
+
+            TextView textView=(TextView) view.findViewById(android.R.id.text1);
+            String item = ((TextView)textView).getText().toString();
+            /*YOUR CHOICE OF COLOR*/
+            if (allergies.contains(item))
+            textView.setTextColor(Color.BLUE);
+
+            return view;
+        }
+        };
+
+
         listView.setAdapter(adapter);
 
+
+
+
+        //
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -95,4 +148,22 @@ public class AllergyActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() { // want it to update the allergen list with the current allergies array
+        super.onBackPressed();
+
+
+        //DocumentReference docRef = db.collection("users").document("temporary").;
+        /*DocumentReference docRef = db.document("users/temporary/allergies");
+        docRef.set(allergies);*/
+
+
+        DocumentReference docRef = db.collection("users").document("temporary");
+        docRef.update("allergies" , allergies);
+
+
+
+    }
+
 }
