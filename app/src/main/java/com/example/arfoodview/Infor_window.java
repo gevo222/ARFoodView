@@ -26,8 +26,8 @@ public class Infor_window extends AppCompatActivity{
    private  FirebaseFirestore db;
    final String TAG = "firebaselog";
     private Button showData;
-    String itemChosen = "applePie";// menu.getItem();
-    String foodname = itemChosen;
+    //String itemChosen = "applePie";// menu.getItem();
+    //String foodname = itemChosen;
    // String cal, sugar, protein, sodium,transfat,fat,carbs;
     //textViewa
     TextView fName;
@@ -46,6 +46,8 @@ public class Infor_window extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String restChosen = getIntent().getStringExtra("restName");
+        String itemChosen = getIntent().getStringExtra("itemChosen");
         db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_infor_window);
         fName = (TextView)findViewById(R.id.displayFoodName);
@@ -66,8 +68,8 @@ public class Infor_window extends AppCompatActivity{
         test = new String[]{"apple", "cinnamont"};
 
 
-
-        DocumentReference docRef = db.collection("restaurants/SunnyWay/food").document(itemChosen);
+        String restPath = "restaurants/" + restChosen + "/food";
+        DocumentReference docRef = db.collection(restPath).document(itemChosen);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

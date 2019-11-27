@@ -1,20 +1,22 @@
 package com.example.arfoodview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -49,9 +51,9 @@ public class Menu_Window extends AppCompatActivity {
         String TAG = "firebase_menu_window";
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String restPath = "restaurant/" + restaurant + "/food";
+        String restPath = "restaurants/" + restaurant + "/food";
         //DocumentReference docs = db.collection(restPath).document(food);
-
+/*
         db.collection(restPath).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -63,92 +65,25 @@ public class Menu_Window extends AppCompatActivity {
                     Log.w(TAG, "Error getting documents.", task.getException());
                 }
             }
-        });
+        });*/
 
 
-        /*
+
         db.collection(restPath).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException e) {
+            public void onEvent( QuerySnapshot documentSnapshots,  FirebaseFirestoreException e) {
 
                 if(e != null) {
                     Log.d(TAG, "error: " + e.getMessage());
                 }
 
                 for(DocumentSnapshot doc: documentSnapshots) {
-                    String restName = doc.getId();
-                    dish.add(restName);
+                    String itemName = doc.getId();
+                    dish.add(itemName);
                 }
             }
-        });*/
+        });
 
-/*
-        db.collection("restaurant").document(restaurant).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if(e != null) {
-                    Log.d(TAG, "error: " + e.getMessage());
-                }
-
-                for(DocumentSnapshot doc: documentSnapshot) {
-                    String restName = doc.getId();
-                    dish.add(restName);
-                }
-            }
-        })*/
-
-        //String restPath = "restaurants/" + restaurant;
-        //DocumentReference docRef =
-        /*
-        db.collection("restaurants").document(restaurant).addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException e) {
-
-                if(e != null) {
-                    Log.d(TAG, "error: " + e.getMessage());
-                }
-
-                for(DocumentSnapshot doc: documentSnapshots) {
-                    String restName = doc.getId();
-                    dish.add(restName);
-                }
-            }
-        });/*
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    List<String> ing = (List<String>) document.get("ingredients");
-                    if (document.exists()) {
-
-
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });*/
-
-
-
-/*
-        dish.add("Milk");
-        dish.add("Peanuts");
-        dish.add("Shellfish");
-        dish.add("Egg");
-        dish.add("Fish");
-        dish.add("Nut");
-        dish.add("Soybean");
-        dish.add("Wheat");
-        dish.add("School");  //lol
-        dish.add("i dunno");
-        dish.add("Soybean");
-        dish.add("Wheat");
-        dish.add("School");  //lol
-        dish.add("i dunno"); */
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,dish);
         listView.setAdapter(adapter);
@@ -169,6 +104,19 @@ public class Menu_Window extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
                 return false;
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String item = ((TextView)view).getText().toString();
+                Intent intent = new Intent(Menu_Window.this, Infor_window.class);
+                intent.putExtra("restName", restaurant);
+                intent.putExtra("itemChosen", item);
+                startActivity(intent);
+
             }
         });
 
