@@ -15,23 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "90470368910-e70qktpbcvd6rvm3a47flp6q8916ntim.apps.googleusercontent.com",
+          "client_id": "90470368910-m047vnrirp2j487slin7l298pmn6ja2b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.arfoodview",
-            "certificate_hash": "e5d8ce3bc1e244c059cda347ac55d5747490c218"
+            "certificate_hash": "8877b5c5ff54504abb3590ddf0816183e7d32c18"
           }
         },
         {
-          "client_id": "90470368910-smjakmv9tgbobhna2k7ebmlu387ian0g.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.arfoodview",
-            "certificate_hash": "da9eac59e2c01b85dfbc9308219a27d763a5c7d0"
-          }
-        },
-        {
-          "client_id": "90470368910-c3nqv2r5ci9e4ju7k1m52riij6t9pds7.apps.googleusercontent.com",
+          "client_id": "90470368910-v8jn5slvb4hgb9qmoiabnj3g91ep3o1c.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.arfoodview",
@@ -39,22 +31,23 @@
           }
         },
         {
-          "client_id": "90470368910-rnu7dbfsivots7ka5r5lec3t4inf7pr2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.arfoodview",
-            "certificate_hash": "8877b5c5ff54504abb3590ddf0816183e7d32c18"
-          }
+          "client_id": "90470368910-6tuprtqti97s1qhhd5im84c70h0h40og.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA8kCpmt6mr8cqbnI6Mx7ny_cbIXDXrxxA"
+          "current_key": "AIzaSyB1Z8NRWqDK1UB5kpBkkq-JjYZlAzaN-hI"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90470368910-6tuprtqti97s1qhhd5im84c70h0h40og.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
