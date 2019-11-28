@@ -1,12 +1,17 @@
 package com.example.arfoodview;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,12 +30,8 @@ import java.util.List;
 public class Infor_window extends AppCompatActivity{
    private  FirebaseFirestore db;
    final String TAG = "firebaselog";
-    private Button showData;
-    //String itemChosen = "applePie";// menu.getItem();
-    //String foodname = itemChosen;
-   // String cal, sugar, protein, sodium,transfat,fat,carbs;
-    //textViewa
     TextView fName;
+    TextView allDisplay;
     TextView sugarData;
     TextView proteinData;
     TextView sodiumData;
@@ -40,14 +41,17 @@ public class Infor_window extends AppCompatActivity{
     TextView calories;
     TextView ings;
     ListView ingredients;
-    ArrayList<String>  ing = new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter;
+    List<String> userAllergies; // user given by users
+    List<String> allergentCross; // user given by users
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String imageChosen = "salmon";
         String restChosen = getIntent().getStringExtra("restName");
         String itemChosen = getIntent().getStringExtra("itemChosen");
+        userAllergies = new ArrayList<>(  );
+        // populating the textViews
         db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_infor_window);
         fName = (TextView)findViewById(R.id.displayFoodName);
@@ -59,26 +63,65 @@ public class Infor_window extends AppCompatActivity{
         fatData = (TextView)findViewById(R.id.fatDisplay);
         carbsData = (TextView)findViewById(R.id.carbsDisplay);
         ings = (TextView)findViewById(R.id.textArea);
-
-       // ingredients = (ListView)findViewById(R.id.AllDisplay);
-//        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-//        ingredients.setAdapter(arrayAdapter);
-        //texting
-        String[] test;
-        test = new String[]{"apple", "cinnamont"};
-
+        allDisplay = (TextView)findViewById( R.id.allergendisplay );
+        // end of populating the textViews
 
         String restPath = "restaurants/" + restChosen + "/food";
+
+        // this is done to get the allergens
+        DocumentReference docAllergyref = db.collection("users").document("temporary");
+        docAllergyref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    userAllergies = (List<String>) document.get( "allergies" );
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        userAllergies = (ArrayList<String>) document.get("allergies");
+                        Log.d(TAG, "DocumentSnapshot data: " + document.get("allergies"));
+                        Log.d(TAG, ""+userAllergies.contains("Peanuts"));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
         DocumentReference docRef = db.collection(restPath).document(itemChosen);
+
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     List<String> ing = (List<String>) document.get("ingredients");
+                    //for allergens
+                    List<String> allergenData = (List<String>) document.get( "allergens" );
+                     allergentCross = new ArrayList(  );
+                     for(int i = 0; i < userAllergies.size(); i++)
+                         for(int j = 0; j < allergenData.size(); j++){
+                             if(userAllergies.get( i ).equals(allergenData.get( j ))){
+                                 allergentCross.add(userAllergies.get( i ));
+                             }
+                         }
+                     Log.d( TAG,"Cross data is: "+ allergentCross );
+                        if(!allergentCross.isEmpty()){
+                            allDisplay.setBackgroundColor( Color.RED);
+                            allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
+                            for(String str : allergentCross){
+                                allDisplay.append( "\n"+str );
+                            }
+                        }else{
+                            allDisplay.setText("No Allergens. ");
+                        }
+
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         Log.d(TAG, "DocumentSnapshot data: " + document.get("calories"));
+                        Log.d(TAG, "DocumentSnapshot data: " + document.get("allergens"));
                         fName.setText(itemChosen);
                         calories.setText(document.getString("calories"));
                         sugarData.setText(document.getString("sugar"));
@@ -87,10 +130,21 @@ public class Infor_window extends AppCompatActivity{
                         transFatData.setText(document.getString("transFat"));
                         fatData.setText(document.getString("fat"));
                         carbsData.setText(document.getString("carbs"));
-                       // ingredients.setAdapter(arrayAdapter);
+
+                        // choosing the right 2D images
+                        ImageView img = (ImageView)findViewById( R.id.imageview_2 );
+                        if (imageChosen.equals("food")){
+                            img.setImageResource( R.drawable.food );
+                        } else if (imageChosen.equals("salmon")) {
+                            img.setImageResource(R.drawable.salmon);
+                        }else{
+                            System.out.println( "image not found!" );
+                        }
+                        // end of choosing 2D images
+
                         for(String str : ing){
                             if(true) { // need to work on this
-                                ings.append("\n" + str);
+                               ings.append("\n" + str);
                             }else{
                                 ings.append("\n" + str);
                             }

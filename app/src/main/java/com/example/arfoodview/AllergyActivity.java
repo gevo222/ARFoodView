@@ -79,7 +79,6 @@ public class AllergyActivity extends AppCompatActivity {
                 }
             }
         });
-
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list) { @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view =super.getView(position, convertView, parent);
@@ -94,13 +93,7 @@ public class AllergyActivity extends AppCompatActivity {
         }
         };
 
-
         listView.setAdapter(adapter);
-
-
-
-
-        //
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
