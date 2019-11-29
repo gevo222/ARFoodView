@@ -79,21 +79,10 @@ public class AllergyActivity extends AppCompatActivity {
                 }
             }
         });
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list) { @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view =super.getView(position, convertView, parent);
-
-            TextView textView=(TextView) view.findViewById(android.R.id.text1);
-            String item = ((TextView)textView).getText().toString();
-            /*YOUR CHOICE OF COLOR*/
-            if (allergies.contains(item))
-            textView.setTextColor(Color.BLUE);
-
-            return view;
-        }
-        };
-
+        
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list);
         listView.setAdapter(adapter);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
