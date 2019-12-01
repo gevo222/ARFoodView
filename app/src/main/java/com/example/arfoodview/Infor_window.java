@@ -121,7 +121,7 @@ public class Infor_window extends AppCompatActivity{
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         Log.d(TAG, "DocumentSnapshot data: " + document.get("calories"));
-                        Log.d(TAG, "DocumentSnapshot data: " + document.get("allergens"));
+                        Log.d(TAG, "DocumentSnapshot dataAllergens: " + document.get("allergens"));
                         fName.setText(itemChosen);
                         calories.setText(document.getString("calories"));
                         sugarData.setText(document.getString("sugar"));

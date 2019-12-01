@@ -11,8 +11,15 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,10 +30,16 @@ import java.util.ArrayList;
 
 public class Menu_Window extends AppCompatActivity {
 
+    FirebaseFirestore db;
     SearchView searchView;
     ListView listView;
     ArrayList<String> dish;
     ArrayAdapter<String > adapter;
+    ArrayAdapter<String > arrayAdapter;
+    DatabaseReference databaseReference;
+    FirebaseDatabase firebaseDatabase;
+
+
 //    // public onstructor
 //    public Menu_Window(){
 //
@@ -50,24 +63,9 @@ public class Menu_Window extends AppCompatActivity {
 
         String TAG = "firebase_menu_window";
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+         db = FirebaseFirestore.getInstance();
         String restPath = "restaurants/" + restaurant + "/food";
-        //DocumentReference docs = db.collection(restPath).document(food);
-/*
-        db.collection(restPath).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d(TAG, document.getId() + " => " + document.getData());
-                    }
-                } else {
-                    Log.w(TAG, "Error getting documents.", task.getException());
-                }
-            }
-        });*/
-
-
 
         db.collection(restPath).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -79,14 +77,14 @@ public class Menu_Window extends AppCompatActivity {
 
                 for(DocumentSnapshot doc: documentSnapshots) {
                     String itemName = doc.getId();
+                    System.out.println( "itemName: "+itemName );
                     dish.add(itemName);
                 }
+                adapter = new ArrayAdapter<String>(Menu_Window.this, android.R.layout.simple_list_item_1,dish);
+                listView.setAdapter(adapter);
+
             }
         });
-
-
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,dish);
-        listView.setAdapter(adapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
