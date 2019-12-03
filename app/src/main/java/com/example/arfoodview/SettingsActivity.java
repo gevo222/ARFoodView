@@ -59,9 +59,6 @@ public class SettingsActivity extends AppCompatActivity {
         edit = findViewById(R.id.b_edit);
         button = findViewById( R.id.Button );
         listView = (ListView) findViewById(R.id.listView);
-
-//        userAllergies = new ArrayList<>();
-
         String TAG = "firebase_menu_window";
 
 
