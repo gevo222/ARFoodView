@@ -25,9 +25,9 @@ public class Ar extends AppCompatActivity {
         System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" );
         System.out.println( "Model chosen in Ar is: "+modelChosen );
         switch(modelChosen){
-            case "Ramen": actualModel = "model.sfb";
-            case "applePie": actualModel = "applePie.sfb";
-            break;
+            case "Ramen": actualModel = "model.sfb";break;
+            case "applePie": actualModel = "applePie.sfb";break;
+            case "Candy Bowl": actualModel = "objCandtBowl.sfb";break;
             default:System.out.println( "3D file not found" );
             break;
         }

@@ -46,3 +46,9 @@ dependencies {
 
 
 
+
+
+sceneform.asset('sampleDataDirectory/objCandtBowl.obj',
+        'default',
+        'sampleDataDirectory/objCandtBowl.sfa',
+        'src/main/assets/objCandtBowl')
