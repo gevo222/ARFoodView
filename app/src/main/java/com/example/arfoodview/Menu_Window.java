@@ -29,7 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class Menu_Window extends AppCompatActivity {
-
+   static String model = "";
     FirebaseFirestore db;
     SearchView searchView;
     ListView listView;
@@ -114,15 +114,14 @@ public class Menu_Window extends AppCompatActivity {
                 intent.putExtra("restName", restaurant);
                 intent.putExtra("itemChosen", item);
                 startActivity(intent);
+                model = item;
+                System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" );
+                System.out.println( "MOdel chose is: "+model );
 
             }
         });
-
-
-
-
-
-
-
+    }
+        public String getModel(){
+        return model;
     }
 }

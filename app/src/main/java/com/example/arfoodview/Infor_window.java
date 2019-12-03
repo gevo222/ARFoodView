@@ -1,14 +1,11 @@
 package com.example.arfoodview;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -109,6 +106,7 @@ public class Infor_window extends AppCompatActivity{
                          }
                      Log.d( TAG,"Cross data is: "+ allergentCross );
                         if(!allergentCross.isEmpty()){
+                            allDisplay.append( "Allergnes:" );
                             allDisplay.setBackgroundColor( Color.RED);
                             allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
                             for(String str : allergentCross){
@@ -133,10 +131,14 @@ public class Infor_window extends AppCompatActivity{
 
                         // choosing the right 2D images
                         ImageView img = (ImageView)findViewById( R.id.imageview_2 );
-                        if (imageChosen.equals("food")){
-                            img.setImageResource( R.drawable.food );
-                        } else if (imageChosen.equals("salmon")) {
+                        if (itemChosen.equals("Ramen")){
+                            img.setImageResource( R.drawable.ramens );
+                        } else if (itemChosen.equals("salmon")) {
                             img.setImageResource(R.drawable.salmon);
+                        }else if(itemChosen.equals( "applePie" )){
+                            img.setImageResource( R.drawable.applepie );
+                        }else if(itemChosen.equals( "pancakes" )){
+                            img.setImageResource( R.drawable.pancakes );
                         }else{
                             System.out.println( "image not found!" );
                         }
@@ -187,49 +189,3 @@ public class Infor_window extends AppCompatActivity{
         });
     }
 }
-
-// int calories, sugar, protein, sodium, transfar, fat, carbs;
-// String ingri;
-
-/*
-        db.collection("Restaurants").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                if(!queryDocumentSnapshots.isEmpty()){
-                    List<DocumentSnapshot> restaurants = queryDocumentSnapshots.getDocuments();
-                    for(DocumentSnapshot d : restaurants){
-                    }
-                }
-            }
-        });
-*/
-
-// attemp #34
-/*
-*  //components
-        final String[] name = {null};
-        //DbComponents
-        final TextView[] f_name = new TextView[1];
-        final String TAG = "firebaselog";
-       ArrayList<DocumentSnapshot> ingridiens = new ArrayList<DocumentSnapshot>();
-        DocumentReference docRef = db.collection("restaurants/SunnyWay/food").document("applePie");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        // this is for the logcat... internal useage
-                       Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        Log.d(TAG, "DocumentSnapshot data: " + document.get("ingresients"));
-                        for(DocumentSnapshot d: ingridiens){
-                            //ingridiens.add(d.getData().get("ingredients"));
-                        }
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });*/

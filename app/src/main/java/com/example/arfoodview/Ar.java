@@ -15,15 +15,26 @@ import com.google.ar.sceneform.ux.TransformableNode;
 
 public class Ar extends AppCompatActivity {
     private ArFragment arFragment;
+    String actualModel="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ar);
 
-         arFragment =(ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
+        String modelChosen  = Menu_Window.model;
+        System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" );
+        System.out.println( "Model chosen in Ar is: "+modelChosen );
+        switch(modelChosen){
+            case "Ramen": actualModel = "model.sfb";
+            case "applePie": actualModel = "applePie.sfb";
+            break;
+            default:System.out.println( "3D file not found" );
+            break;
+        }
+        arFragment =(ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
          arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) ->{
             Anchor anchor = hitResult.createAnchor();
-           ModelRenderable.builder().setSource(this, Uri.parse("model.sfb")).build().thenAccept(modelRenderable -> addModelToScene(anchor,modelRenderable)).exceptionally(throwable ->{
+           ModelRenderable.builder().setSource(this, Uri.parse(actualModel)).build().thenAccept(modelRenderable -> addModelToScene(anchor,modelRenderable)).exceptionally(throwable ->{
                AlertDialog.Builder builder = new AlertDialog.Builder(this);
               builder.setMessage(throwable.getMessage()).show();
              return null;
@@ -35,7 +46,9 @@ public class Ar extends AppCompatActivity {
         TransformableNode transformableNode = new TransformableNode(arFragment.getTransformationSystem());
         transformableNode.setParent(anchorNode);
         transformableNode.setRenderable(modelRenderable);
-        Vector3 vector3 = new Vector3(0.0f,0.0f,0.0f);// this is just for sizing
+        transformableNode.getScaleController().setMaxScale( 0.5f );// this is actually for sizing
+        transformableNode.getScaleController().setMinScale( 0.4f );
+        Vector3 vector3 = new Vector3(0.0f,0.0f,0.0f);
         transformableNode.setLocalScale(vector3);
         arFragment.getArSceneView().getScene().addChild(anchorNode);
         transformableNode.select();

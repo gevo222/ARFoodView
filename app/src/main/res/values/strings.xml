@@ -2,7 +2,7 @@
     <string name="app_name">VisiFood</string>
     <string-array name="options">
         <item>Choose</item>
-        <item>Restaurant not found</item>
+        <item>Restaurant not found+"\n"</item>
         <item>AR did not work</item>
         <item>app crashed</item>
         <item>Food not found</item>
