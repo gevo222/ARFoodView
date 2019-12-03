@@ -4,7 +4,7 @@
       name: 'lambert5SG',
       parameters: [
         {
-          baseColor: null,
+          baseColor: 'pizzaTxt',
         },
         {
           baseColorTint: [
@@ -64,5 +64,12 @@
     name: 'pizza',
     recenter: 'root',
   },
+  samplers: [
+    {
+      file: 'sampleDataDirectory\\pizzaTxt.png',
+      name: 'pizzaTxt',
+      pipeline_name: 'pizzaTxt.png',
+    },
+  ],
   version: '0.54:2',
 }

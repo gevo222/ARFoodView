@@ -28,6 +28,8 @@ public class Ar extends AppCompatActivity {
             case "Ramen": actualModel = "model.sfb";break;
             case "applePie": actualModel = "applePie.sfb";break;
             case "Candy Bowl": actualModel = "objCandtBowl.sfb";break;
+            case "Pizza": actualModel = "pizza.png";break;
+            case "Apple Strudel": actualModel = "AppleStrudel.sfb";
             default:System.out.println( "3D file not found" );
             break;
         }

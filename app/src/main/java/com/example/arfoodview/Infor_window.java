@@ -141,6 +141,10 @@ public class Infor_window extends AppCompatActivity{
                             img.setImageResource( R.drawable.pancakes );
                         }else if(itemChosen.equals( "Candy Bowl" )){
                             img.setImageResource( R.drawable.candybowl );
+                        }else if(itemChosen.equals( "Pizza" )){
+                            img.setImageResource( R.drawable.pizza );
+                        }else if(itemChosen.equals( "Apple Strudel" )){
+                            img.setImageResource( R.drawable.applestrudel );
                         }else{
                             System.out.println( "image not found!" );
                         }
