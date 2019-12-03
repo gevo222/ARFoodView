@@ -52,13 +52,13 @@ sceneform.asset('sampleDataDirectory/objCandtBowl.obj',
         'default',
         'sampleDataDirectory/objCandtBowl.sfa',
         'src/main/assets/objCandtBowl')
+sceneform.asset('sampleDataDirectory/AppleStrudel.obj',
+        'default',
+        'sampleDataDirectory/AppleStrudel.sfa',
+        'src/main/assets/AppleStrudel')
+
 
 sceneform.asset('sampleDataDirectory/pizza.obj',
         'default',
         'sampleDataDirectory/pizza.sfa',
         'src/main/assets/pizza')
-
-sceneform.asset('sampleDataDirectory/AppleStrudel.obj',
-        'default',
-        'sampleDataDirectory/AppleStrudel.sfa',
-        'src/main/assets/AppleStrudel')
