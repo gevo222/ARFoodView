@@ -39,6 +39,11 @@ public class helpActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 appendText(description);// this is for testing the entry.
 
+                textName.setText("");
+                textEmail.setText( "" );
+                textDescription.setText( "" );
+
+
             }
         });
 
