@@ -44,6 +44,7 @@ dependencies {
 
     // Add Library
     implementation 'com.github.MdFarhanRaja:SearchableSpinner:1.2'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }
 
 

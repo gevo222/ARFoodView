@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
         final String TAG = "firebaselog";
         final ImageButton settingsButton = findViewById(R.id.settingsButton);
-        final ImageButton cameraButton = findViewById(R.id.cameraButton);
+        //final ImageButton cameraButton = findViewById(R.id.cameraButton);
         final ImageButton helpButton = findViewById(R.id.helpButton);
 
         // initiate the database
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //camera button
-        cameraButton.setOnClickListener(new View.OnClickListener() {
+        /*cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             // When user clicks start button do this
             public void onClick(View view) {
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, Ar.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         //Help button
         helpButton.setOnClickListener(new View.OnClickListener() {
