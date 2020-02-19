@@ -40,10 +40,11 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.981"
-        app:srcCompat="@drawable/food" />
+        app:layout_constraintVertical_bias="0.894"
+        app:srcCompat="@drawable/map_view" />
 
     <Button
         android:id="@+id/btnShow"
