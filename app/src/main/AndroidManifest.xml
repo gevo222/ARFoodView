@@ -17,19 +17,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Infor_window"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RegisterActivity" >  <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter> </activity>
+
+        <activity android:name=".Infor_window" />
         <activity android:name=".Menu_Window" /> <!-- android:theme="@style/Theme.AppCompat.NoActionBar"> -->
         <activity android:name=".helpActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AllergyActivity" />
         <activity android:name=".Ar" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity"/>
 
         <meta-data
             android:name="com.google.ar.core"

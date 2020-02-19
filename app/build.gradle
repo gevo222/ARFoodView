@@ -34,6 +34,7 @@ dependencies {
     implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.12.0'
     implementation 'com.google.firebase:firebase-firestore:21.3.0'
     implementation 'com.google.firebase:firebase-database:19.2.0'
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -43,9 +44,6 @@ dependencies {
     // Add Library
     implementation 'com.github.MdFarhanRaja:SearchableSpinner:1.2'
 }
-
-
-
 
 
 sceneform.asset('sampleDataDirectory/objCandtBowl.obj',
