@@ -10,20 +10,20 @@
     tools:context="com.example.arfoodview.AllergyActivity">
 
     <ListView
+        android:id="@+id/lv1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lv1"
-        android:divider="#ad5"
-        android:dividerHeight="2dp"
-        android:layout_below="@+id/searchView"/>
+        android:layout_below="@+id/searchView"
+        android:divider="#FC5539"
+        android:dividerHeight="2dp" />
 
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:queryHint="Search Here"
-        android:iconifiedByDefault="false"
         android:layout_alignParentTop="true"
-        />
+        android:background="#7AFC5539"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search Here" />
 
 </RelativeLayout>

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Switch;
@@ -37,7 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
     Switch switch1;
     FirebaseFirestore db;
     Button edit;
-    Button button;
+    ImageButton button;
     ListView listView;
     ArrayList<String> userAllergies;
     ArrayAdapter<String > adapter;

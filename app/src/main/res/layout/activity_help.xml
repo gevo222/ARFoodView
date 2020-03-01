@@ -17,7 +17,10 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fill form Report" />
+            android:text="Fill Form Report"
+            android:textColor="#fc5539"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/textName"
@@ -64,7 +67,7 @@
             android:id="@+id/submit_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="#fc5539"
             android:text="Submit" />
     </LinearLayout>
 
