@@ -1,39 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF">
+
 
     <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="364dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:background="@drawable/pizza_background"
-         />
-
-    <TextView
-        android:id="@+id/appTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/imgLogo"
-        android:layout_alignTop="@id/imgLogo"
-        android:layout_alignRight="@id/imgLogo"
-        android:layout_alignBottom="@id/imgLogo"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:fontFamily="monospace"
-        android:gravity="center"
-        android:text="VisiFood"
-        android:textColor="#FFFFFF"
-        android:textSize="72sp" />
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="203dp"
+        android:background="@mipmap/visi_food_icon"
+        android:foregroundTint="#8FB94B" />
 
 </RelativeLayout>

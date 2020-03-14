@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         mRegisterButton = findViewById(R.id.registerButton);
 
         fAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.progressBar);
+        //progressBar = findViewById(R.id.progressBar);
 
 
         if(fAuth.getCurrentUser() != null) {

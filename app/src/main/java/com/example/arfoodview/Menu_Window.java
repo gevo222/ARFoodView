@@ -116,7 +116,7 @@ public class Menu_Window extends AppCompatActivity {
                 startActivity(intent);
                 model = item;
                 System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" );
-                System.out.println( "MOdel chose is: "+model );
+                System.out.println( "Model chose is: "+model );
 
             }
         });
