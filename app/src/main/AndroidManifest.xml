@@ -17,14 +17,23 @@
         android:roundIcon="@mipmap/visi_food_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".Infor_window" />
-        <activity android:name=".Menu_Window" /> <!-- android:theme="@style/Theme.AppCompat.NoActionBar"> -->
-        <activity android:name=".helpActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".AllergyActivity" />
-        <activity android:name=".Ar" />
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Infor_window"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Menu_Window"
+            android:screenOrientation="portrait"/> <!-- android:theme="@style/Theme.AppCompat.NoActionBar"> -->
+        <activity android:name=".helpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SettingsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AllergyActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Ar"
+            android:screenOrientation="portrait"/>
         <activity android:name=".SplashScreen"
                 android:label="@string/app_name"
                 android:screenOrientation="portrait"
@@ -36,6 +45,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
+                android:screenOrientation="portrait"
                 android:label="@string/app_name" ></activity>
 
         <meta-data

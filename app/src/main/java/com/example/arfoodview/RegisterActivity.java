@@ -20,21 +20,22 @@ import com.google.firebase.FirebaseApp;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText mUsernameText, mEmailText, mPasswordText;
-    Button mRegisterButton;
+    //EditText mUsernameText
+    EditText mEmailText, mPasswordText;
+    Button mRegisterButton, mSignInButton;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mUsernameText = findViewById(R.id.usernameText);
+        //mUsernameText = findViewById(R.id.usernameText);
         mEmailText = findViewById(R.id.emailText);
         mPasswordText = findViewById(R.id.passwordText);
         mRegisterButton = findViewById(R.id.registerButton);
+        mSignInButton = findViewById(R.id.sign_in_Btn);
 
         fAuth = FirebaseAuth.getInstance();
         //progressBar = findViewById(R.id.progressBar);
@@ -43,6 +44,16 @@ public class RegisterActivity extends AppCompatActivity {
         if(fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
+
+        mSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            // When user settings start button do this
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
