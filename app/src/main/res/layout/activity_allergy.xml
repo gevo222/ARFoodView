@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/searchView"
-        android:divider="#FC5539"
+        android:divider="@color/colorPrimary"
         android:dividerHeight="2dp" />
 
     <SearchView
@@ -22,7 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#7AFC5539"
+        android:backgroundTint="@color/colorPrimary"
+        android:foregroundTint="@color/colorPrimary"
         android:iconifiedByDefault="false"
         android:queryHint="Search Here" />
 

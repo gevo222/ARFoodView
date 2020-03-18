@@ -12,9 +12,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/visi_food_icon"
+        android:icon="@mipmap/visifood_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/visi_food_icon"
+        android:roundIcon="@mipmap/visifood_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity"

@@ -27,7 +27,7 @@ public class helpActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_help);
         textName = (EditText) findViewById(R.id.textName);
         textEmail = (EditText) findViewById(R.id.textEmail);
-        textDescription = (EditText) findViewById(R.id.textDescription);
+        textDescription = (EditText) findViewById(R.id.descriptionBox);
 
         submit = (Button) findViewById(R.id.submit_button);
         submit.setOnClickListener(new View.OnClickListener(){
@@ -47,7 +47,7 @@ public class helpActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        Spinner spinner = findViewById(R.id.spinner1);
+        Spinner spinner = findViewById(R.id.helpOption);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.options,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);

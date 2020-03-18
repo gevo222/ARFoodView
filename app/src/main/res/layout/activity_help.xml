@@ -1,74 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".helpActivity">
-
-    <LinearLayout
-        android:layout_width="311dp"
-        android:layout_height="370dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="122dp"
-        android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".helpActivity"
+        android:background="@android:color/white">
 
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fill Form Report"
-            android:textColor="#fc5539"
+            android:id="@+id/titleText"
+            android:layout_width="323dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="FILL FORM REPORT"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textName" />
 
-        <EditText
-            android:id="@+id/textName"
-            android:layout_width="192dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter your name"
-            android:inputType="textPersonName" />
+    <EditText
+    android:id="@+id/textName"
+    android:layout_width="323dp"
+    android:layout_height="49dp"
+    android:layout_marginBottom="24dp"
+    android:ems="10"
+    android:hint="Enter your name"
+    android:inputType="textPersonName"
+    android:textColorHint="@color/colorPrimary"
+    app:layout_constraintBottom_toTopOf="@+id/textEmail"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/textEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter your email"
-            android:inputType="textEmailAddress" />
+    <EditText
+        android:id="@+id/textEmail"
+        android:layout_width="323dp"
+        android:layout_height="49dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/optionText"
+        android:layout_marginBottom="24dp"
+        android:ems="10"
+        android:hint="Enter your email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/colorPrimary"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="179dp" />
 
         <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Options:" />
+            android:id="@+id/optionText"
+            android:layout_width="323dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="2dp"
+            android:text="Options:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/helpOption"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="127dp" />
 
         <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dropdown" />
+            android:id="@+id/helpOption"
+            android:layout_width="323dp"
+            android:layout_height="49dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textDescription"
+            android:backgroundTint="@color/colorPrimary"
+            android:foregroundTint="@color/colorPrimary"
+            android:popupBackground="@color/colorPrimary"
+            android:spinnerMode="dialog"
+            android:theme="@style/AppTheme"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="103dp" />
 
-        <EditText
+        <TextView
             android:id="@+id/textDescription"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:cursorVisible="true"
-            android:ems="10"
-            android:hint="Description:"
-            android:inputType="text"
-            android:isScrollContainer="true"
-            android:selectAllOnFocus="false"
-            android:singleLine="false"
-            android:textAlignment="textStart" />
+            android:layout_width="323dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="2dp"
+            android:text="Description:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/descriptionBox"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="127dp" />
 
-        <Button
-            android:id="@+id/submit_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#fc5539"
-            android:text="Submit" />
-    </LinearLayout>
+    <EditText
+        android:id="@+id/descriptionBox"
+        android:layout_width="323dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="24dp"
+        android:cursorVisible="true"
+        android:ems="10"
+        android:inputType="text"
+        android:isScrollContainer="true"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/submit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="323dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Submit"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>

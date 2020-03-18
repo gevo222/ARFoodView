@@ -8,17 +8,17 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="364dp"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="203dp"
-        android:background="@mipmap/visi_food_icon"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="183dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="184dp"
+        android:background="@drawable/visifood_logo"
         android:foregroundTint="#8FB94B" />
 
 </RelativeLayout>
