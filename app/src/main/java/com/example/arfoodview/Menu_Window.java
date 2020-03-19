@@ -54,10 +54,11 @@ public class Menu_Window extends AppCompatActivity {
         String restaurant = getIntent().getStringExtra("Rest_name");
 
         TextView tView = (TextView) findViewById(R.id.RestName);
-        tView.setText(restaurant);
+        String rName = restaurant + " Menu";
+        tView.setText(rName);
 
-        searchView = (SearchView) findViewById(R.id.searchView2);
-        listView = (ListView) findViewById(R.id.dishes);
+        searchView = (SearchView) findViewById(R.id.searchView);
+        listView = (ListView) findViewById(R.id.dishlist);
 
         dish = new ArrayList<>();
 
@@ -114,14 +115,14 @@ public class Menu_Window extends AppCompatActivity {
                 intent.putExtra("restName", restaurant);
                 intent.putExtra("itemChosen", item);
                 startActivity(intent);
-                model = item;
-                System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" );
-                System.out.println( "Model chose is: "+model );
+                //model = item;
+                //System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" );
+                //System.out.println( "Model chosen is: "+model );
 
             }
         });
     }
-        public String getModel(){
-        return model;
-    }
+        //public String getModel(){
+        //return model;
+        //}
 }

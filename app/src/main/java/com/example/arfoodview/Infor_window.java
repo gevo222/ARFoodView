@@ -47,7 +47,7 @@ public class Infor_window extends AppCompatActivity{
         String imageChosen = "salmon";
         String restChosen = getIntent().getStringExtra("restName");
         String itemChosen = getIntent().getStringExtra("itemChosen");
-        userAllergies = new ArrayList<>(  );
+        userAllergies = new ArrayList<>();
         // populating the textViews
         db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_infor_window);
@@ -131,22 +131,31 @@ public class Infor_window extends AppCompatActivity{
 
                         // choosing the right 2D images
                         ImageView img = (ImageView)findViewById( R.id.imageview_2 );
-                        if (itemChosen.equals("Ramen")){
-                            img.setImageResource( R.drawable.ramens );
-                        } else if (itemChosen.equals("salmon")) {
-                            img.setImageResource(R.drawable.salmon);
-                        }else if(itemChosen.equals( "applePie" )){
-                            img.setImageResource( R.drawable.applepie );
-                        }else if(itemChosen.equals( "pancakes" )){
-                            img.setImageResource( R.drawable.pancakes );
-                        }else if(itemChosen.equals( "Candy Bowl" )){
-                            img.setImageResource( R.drawable.candybowl );
-                        }else if(itemChosen.equals( "Pizza" )){
-                            img.setImageResource( R.drawable.pizza );
-                        }else if(itemChosen.equals( "Apple Strudel" )){
-                            img.setImageResource( R.drawable.applestrudel );
-                        }else{
-                            System.out.println( "image not found!" );
+                        switch (itemChosen) {
+                            case "Ramen":
+                                img.setImageResource(R.drawable.ramens);
+                                break;
+                            case "salmon":
+                                img.setImageResource(R.drawable.salmon);
+                                break;
+                            case "applePie":
+                                img.setImageResource(R.drawable.applepie);
+                                break;
+                            case "pancakes":
+                                img.setImageResource(R.drawable.pancakes);
+                                break;
+                            case "Candy Bowl":
+                                img.setImageResource(R.drawable.candybowl);
+                                break;
+                            case "Pizza":
+                                img.setImageResource(R.drawable.pizza);
+                                break;
+                            case "Apple Strudel":
+                                img.setImageResource(R.drawable.applestrudel);
+                                break;
+                            default:
+                                System.out.println("image not found!");
+                                break;
                         }
                         // end of choosing 2D images
 
@@ -180,13 +189,13 @@ public class Infor_window extends AppCompatActivity{
             }
         });// end of Ar camera button
 
-        // a\help button
-        final Button helpButton = findViewById(R.id.HelpButton);
+        // help button
+        final ImageButton helpButton = findViewById(R.id.HelpButton);
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             // When user settings start button do this
             public void onClick(View view) {
-                Log.d("RoadRageKiller", "Clicked Settings Button");
+                Log.d("VisiFood", "Clicked Settings Button");
                 Intent intent = new Intent(Infor_window.this, helpActivity.class);
                 startActivity(intent);
                 //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
