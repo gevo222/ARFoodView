@@ -24,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mEmailText, mPasswordText;
     Button mRegisterButton, mSignInButton;
     FirebaseAuth fAuth;
+    //Todo: Add progress Bar again
     ProgressBar progressBar;
 
     @Override
@@ -76,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                //progressBar.setVisibility((View.VISIBLE));
+                //Todo progressBar.setVisibility((View.VISIBLE));
 
                 //register user in firebase
 
