@@ -10,7 +10,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
     public class MapsActivity extends MainActivity implements OnMapReadyCallback {
-
         private GoogleMap mMap;
 
         @Override
