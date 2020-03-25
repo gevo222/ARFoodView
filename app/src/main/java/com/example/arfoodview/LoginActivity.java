@@ -46,10 +46,15 @@ public class LoginActivity extends AppCompatActivity {
         //end
 
 
+
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             // When user settings start button do this
             public void onClick(View view) {
+
+                // SKIPPING LOGIN FOR NOW
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
 
                 String email = mEmailText.getText().toString().trim();
                 String password = mPasswordText.getText().toString().trim();
