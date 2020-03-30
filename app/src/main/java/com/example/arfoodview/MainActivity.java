@@ -71,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+          //      .findFragmentById(R.id.map);
+        //mapFragment.getMapAsync((OnMapReadyCallback) this);
         DataBaseHelper myDB = new DataBaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -180,11 +183,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync((OnMapReadyCallback) this);
     }//end of onCreate
 
 
@@ -220,20 +218,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-/*
-        restaurant.add("Sushi-Ron");
-        restaurant.add("Gevo's Gravy!");
-        restaurant.add("Sunny Side Up");
-        restaurant.add("CinnaRon!");
-        restaurant.add("Munchin Mo'Nuts");
-        restaurant.add("SunnyWay");
-        restaurant.add("Give Me Mo!");
-        restaurant.add("Gevordo's Pizzeria");
-        restaurant.add("Sunny's Philadelphia Cheesecakes");
-        restaurant.add("Mo' than Waffles");
-        //for(int i = 0; i < 100; i++) {
-        //   restaurant.add("Restaurant "+(i+1));
-        //}*/
     }
 
     private static boolean hasPermissions(Context context, String... permissions) {

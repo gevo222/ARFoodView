@@ -1,330 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nameDisplay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Infor_window">
 
-    <TextView
-        android:id="@+id/taDisplay"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="22dp"
-        android:text="Display"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/fatDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/NaDisplay"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="16dp"
-        android:text="Display"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/taDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/calDisplay"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="21dp"
-        android:text="display"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/sugarDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/displayFoodName"
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:layout_marginTop="12dp"
-        android:text="display"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/calDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.028" />
-
-    <TextView
-        android:id="@+id/proteinInfo"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="334dp"
-        android:layout_marginBottom="17dp"
-        android:text="Protein:"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/sodiumInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/fatInfo"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="334dp"
-        android:layout_marginBottom="20dp"
-        android:text="Fat"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/CarbsInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/transFat"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="334dp"
-        android:layout_marginBottom="22dp"
-        android:text="Trans Fat:"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/fatInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/sodiumInfo"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="334dp"
-        android:layout_marginBottom="15dp"
-        android:text="Sodium:"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/transFat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/fatDisplay"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="20dp"
-        android:text="Display"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/carbsDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/proteinDisplay"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="16dp"
-        android:text="Display"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/NaDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/sugarInfo"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="334dp"
-        android:layout_marginBottom="18dp"
-        android:text="Sugar:"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/proteinInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/caloryInfo"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="334dp"
-        android:layout_marginBottom="21dp"
-        android:text="Calories:"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/sugarInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageview_2"
-        android:layout_width="408dp"
-        android:layout_height="165dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.005" />
-
-    <View
-        android:id="@+id/divider"
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="508dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageview_2"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
+        <TableRow>
 
-    <TextView
-        android:id="@+id/sugarDisplay"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="18dp"
-        android:text="Display"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/proteinDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
-        app:layout_constraintStart_toStartOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="350dp"
+                android:layout_height="150dp"
+                >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="336dp"
-        android:layout_marginBottom="428dp"
-        android:text="Nutrition"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+                <ImageView
+                    android:id="@+id/imageview_2"
+                    android:layout_width="350dp"
+                    android:layout_height="150dp"
+                    android:padding="3dip"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-    <ImageButton
-        android:id="@+id/ArButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="49dp"
-        android:layout_marginBottom="418dp"
-        android:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+                <ImageButton
+                    android:id="@+id/HelpButton"
+                    android:layout_width="38dp"
+                    android:layout_height="36dp"
+                    android:background="@android:color/transparent"
+                    android:text="Help"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.043"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.124"
+                    app:srcCompat="@android:drawable/ic_menu_help" />
 
-    <ImageButton
-        android:id="@+id/HelpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="Help"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/allergendisplay"
-        app:layout_constraintHorizontal_bias="0.391"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageview_2"
-        app:layout_constraintVertical_bias="0.065"
-        app:srcCompat="@android:drawable/ic_menu_help" />
+                <ImageButton
+                    android:id="@+id/ArButton"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="36dp"
+                    android:layout_height="33dp"
+                    android:backgroundTint="#FFFFFF"
+                    android:color="@android:color/transparent"
+                    app:srcCompat="@android:drawable/ic_menu_camera"
+                    android:text="See AR"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.943"
+                    app:layout_constraintStart_toEndOf="@+id/HelpButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.119" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </TableRow>
+        <TableRow>
 
-    <TextView
-        android:id="@+id/infoName"
-        android:layout_width="66dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="334dp"
-        android:layout_marginBottom="20dp"
-        android:text="Name:"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/caloryInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Nutrition"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+            <TextView
+                android:id="@+id/allergendisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+        <TableRow>
+            <TextView
+                android:id="@+id/infoName"
+                android:layout_marginLeft="10dp"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Name:"
+                android:textColor="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/ingredientsInfo"
-        android:layout_width="83dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="97dp"
-        android:layout_marginEnd="3dp"
-        android:text="Ingredients:"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toStartOf="@+id/ArButton"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+            <TextView
+                android:id="@+id/displayFoodName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="display"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+        <TableRow>
+            <TextView
+                android:id="@+id/caloryInfo"
+                android:layout_marginLeft="10dp"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Calories:"
+                android:textColor="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/calDisplay"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="display"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+        <TableRow>
+            <TextView
+                android:id="@+id/sugarInfo"
+                android:layout_marginLeft="10dp"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Sugar:"
+                android:textColor="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/sugarDisplay"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="Display"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+        <TableRow>
+            <TextView
+                android:id="@+id/proteinInfo"
+                android:layout_marginLeft="10dp"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Protein:"
+                android:textColor="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/proteinDisplay"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="Display"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+        <TableRow>
+            <TextView
+                android:id="@+id/sodiumInfo"
+                android:layout_marginLeft="10dp"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Sodium:"
+                android:textColor="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/NaDisplay"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="Display"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+        <TableRow>
+            <TextView
+                android:id="@+id/transFat"
+                android:layout_marginLeft="10dp"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Trans Fat:"
+                android:textColor="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/taDisplay"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="Display"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+        <TableRow>
+            <TextView
+                android:id="@+id/fatInfo"
+                android:layout_marginLeft="10dp"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Fat:"
+                android:textColor="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/fatDisplay"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="Display"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+        <TableRow>
+            <TextView
+                android:id="@+id/CarbsInfo"
+                android:layout_marginLeft="10dp"
+                android:layout_width="67dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Carbs:"
+                android:textColor="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/CarbsInfo"
-        android:layout_width="67dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="304dp"
-        android:layout_marginBottom="52dp"
-        android:text="Carbs"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/carbsDisplay"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="48dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.304"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textArea"
-        android:layout_width="149dp"
-        android:layout_height="270dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="42dp"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/taDisplay"
-        app:layout_constraintTop_toBottomOf="@+id/ingredientsInfo"
-        app:layout_constraintVertical_bias="0.517" />
-
-    <TextView
-        android:id="@+id/allergendisplay"
-        android:layout_width="117dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="157dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="137dp"
-        android:layout_marginBottom="61dp"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/ingredientsInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:layout_constraintVertical_bias="0.0" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/carbsDisplay"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="Display"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+        <TableRow>
+            <TextView
+                android:id="@+id/ingredientsInfo"
+                android:layout_marginLeft="10dp"
+                android:layout_width="83dp"
+                android:layout_height="33dp"
+                android:text="Ingredients:"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textArea"
+                android:layout_marginLeft="10dp"
+                android:layout_width="149dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+    </TableLayout>
+</ScrollView>

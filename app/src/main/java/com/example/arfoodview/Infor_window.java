@@ -106,14 +106,14 @@ public class Infor_window extends AppCompatActivity{
                          }
                      Log.d( TAG,"Cross data is: "+ allergentCross );
                         if(!allergentCross.isEmpty()){
-                            allDisplay.append( "Allergnes:" );
-                            allDisplay.setBackgroundColor( Color.RED);
+                            allDisplay.setTextColor(Color.parseColor("FF6400"));
+                            allDisplay.append( "Allergens:" );
                             allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
                             for(String str : allergentCross){
                                 allDisplay.append( "\n"+str );
                             }
                         }else{
-                            allDisplay.setText("No Allergens. ");
+                            allDisplay.setText("No Allergens.");
                         }
 
                     if (document.exists()) {
@@ -181,7 +181,7 @@ public class Infor_window extends AppCompatActivity{
             @Override
             // When user settings start button do this
             public void onClick(View view) {
-                Log.d("RoadRageKiller", "Clicked Settings Button");
+                Log.d("VisiFood", "Clicked AR Button");
                 Intent intent = new Intent(Infor_window.this, Ar.class);
                 startActivity(intent);
                 //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);

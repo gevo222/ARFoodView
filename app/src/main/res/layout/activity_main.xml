@@ -30,9 +30,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_settings_applications_24px" />
 
-    <fragment
+    <ImageView
         android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="278dp"
         android:layout_height="261dp"
         app:layout_constraintBottom_toBottomOf="parent"
