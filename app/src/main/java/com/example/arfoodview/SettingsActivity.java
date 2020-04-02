@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.content.SharedPreferences;
 
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -31,6 +33,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 public class SettingsActivity extends AppCompatActivity {
@@ -90,6 +93,31 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
 
+        });
+
+        // Navigation Bar
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.settings_icon:
+                        Toast.makeText(SettingsActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.profile_icon:
+                        Toast.makeText(SettingsActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.search_icon:
+                        Toast.makeText(SettingsActivity.this, "Search", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(SettingsActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+                return true;
+            }
         });
     /*    String restPath = "restaurants/" + restaurant + "/food";
 

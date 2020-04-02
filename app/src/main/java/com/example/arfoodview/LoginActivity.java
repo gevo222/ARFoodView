@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -45,6 +47,31 @@ public class LoginActivity extends AppCompatActivity {
         //Todo progressBar = something
 
         //end
+
+        // Navigation Bar
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.profile_icon:
+                        Toast.makeText(LoginActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.search_icon:
+                        Toast.makeText(LoginActivity.this, "Search", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.settings_icon:
+                        Toast.makeText(LoginActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(LoginActivity.this, SettingsActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+                return true;
+            }
+        });
 
 
 

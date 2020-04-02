@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -23,9 +24,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,6 +49,7 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 public class MainActivity extends AppCompatActivity {
 
 
+    private ActionBar toolbar;
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 1;
 
     private GoogleMap mMap;
@@ -77,6 +82,33 @@ public class MainActivity extends AppCompatActivity {
         DataBaseHelper myDB = new DataBaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Navigation Bar
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.search_icon:
+                        Toast.makeText(MainActivity.this, "Search", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.profile_icon:
+                        Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.settings_icon:
+                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+                return true;
+            }
+        });
+
+
 
         if (hasPermissions(this, RUNTIME_PERMISSIONS)) {
             Log.d("food", "Runtime permissions already granted");
@@ -185,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
     }//end of onCreate
 
+    // Navigation Bar
 
     //@Override
     public void onMapReady(GoogleMap googleMap) {

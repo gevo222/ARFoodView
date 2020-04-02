@@ -15,9 +15,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_maps);
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.map);
-            mapFragment.getMapAsync(this);
+            //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+            //        .findFragmentById(R.id.map);
+            //mapFragment.getMapAsync(this);
         }
 
         @Override

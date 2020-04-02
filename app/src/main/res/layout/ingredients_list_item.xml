@@ -1,127 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@android:style/Widget.DeviceDefault.ListView"
+    android:id="@+id/ingredientDisplay"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".SeeIngredients">
 
-    <TextView
-        android:id="@+id/textView24"
-        android:layout_width="399dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
+        <TableRow>
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="399dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/textView18"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="350dp"
+                android:layout_height="150dp"
+                >
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="399dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/textView16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+                <ImageView
+                    android:id="@+id/imageview_2"
+                    android:layout_width="350dp"
+                    android:layout_height="150dp"
+                    android:padding="3dip"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="399dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                <ImageButton
+                    android:id="@+id/HelpButton"
+                    android:layout_width="38dp"
+                    android:layout_height="36dp"
+                    android:background="@android:color/transparent"
+                    android:text="Help"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.043"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.124"
+                    app:srcCompat="@android:drawable/ic_menu_help" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </TableRow>
+        <View
+            android:id="@+id/divider8"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+        <TableRow>
+            <TextView
+                android:id="@+id/infoName"
+                android:layout_marginLeft="10dp"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Name:"
+                android:textColor="@color/colorPrimary" />
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="399dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/textView21"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+            <TextView
+                android:id="@+id/displayFoodName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="3dip"
+                android:text="display"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Ingredients: "
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+            <TextView
+                android:id="@+id/allergendisplay"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textArea"
+                android:layout_marginLeft="10dp"
+                android:layout_width="149dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary" />
+        </TableRow>
+        <View
+            android:id="@+id/divider9"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="399dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/textView20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="399dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+            <!-- Main content -->
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="399dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="6dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="#FFFFFF"
+                app:itemIconTint="@color/colorAccent"
+                app:itemTextColor="@color/colorAccent"
+                app:menu="@menu/dish_nav" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="399dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/textView24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
+    </TableLayout>
+
+</LinearLayout>

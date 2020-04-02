@@ -3,11 +3,11 @@ package com.example.arfoodview;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -27,18 +27,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Infor_window extends AppCompatActivity{
-   private  FirebaseFirestore db;
-   final String TAG = "firebaselog";
+public class SeeIngredients extends AppCompatActivity {
+
+
+    private FirebaseFirestore db;
+    final String TAG = "firebaselog";
     TextView fName;
     TextView allDisplay;
-    TextView sugarData;
-    TextView proteinData;
-    TextView sodiumData;
-    TextView transFatData;
-    TextView fatData;
-    TextView carbsData;
-    TextView calories;
     TextView ings;
     ListView ingredients;
     List<String> userAllergies; // user given by users
@@ -53,15 +48,9 @@ public class Infor_window extends AppCompatActivity{
         userAllergies = new ArrayList<>();
         // populating the textViews
         db = FirebaseFirestore.getInstance();
-        setContentView(R.layout.activity_infor_window);
+        setContentView(R.layout.ingredients_list_item);
         fName = (TextView)findViewById(R.id.displayFoodName);
-        calories = (TextView)findViewById(R.id.calDisplay);
-        sugarData = (TextView)findViewById(R.id.sugarDisplay);
-        proteinData = (TextView)findViewById(R.id.proteinDisplay);
-        sodiumData = (TextView)findViewById(R.id.NaDisplay);
-        transFatData = (TextView)findViewById(R.id.taDisplay);
-        fatData = (TextView)findViewById(R.id.fatDisplay);
-        carbsData = (TextView)findViewById(R.id.carbsDisplay);
+        ings = (TextView)findViewById(R.id.textArea);
         allDisplay = (TextView)findViewById( R.id.allergendisplay );
         // end of populating the textViews
 
@@ -96,39 +85,33 @@ public class Infor_window extends AppCompatActivity{
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
+                    List<String> ing = (List<String>) document.get("ingredients");
                     //for allergens
                     List<String> allergenData = (List<String>) document.get( "allergens" );
-                     allergentCross = new ArrayList(  );
-                     for(int i = 0; i < userAllergies.size(); i++)
-                         for(int j = 0; j < allergenData.size(); j++){
-                             if(userAllergies.get( i ).equals(allergenData.get( j ))){
-                                 allergentCross.add(userAllergies.get( i ));
-                             }
-                         }
-                     Log.d( TAG,"Cross data is: "+ allergentCross );
-                        if(!allergentCross.isEmpty()){
-                            allDisplay.setTextColor(Color.parseColor("FF6400"));
-                            allDisplay.append( "Allergens:" );
-                            allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
-                            for(String str : allergentCross){
-                                allDisplay.append( "\n"+str );
+                    allergentCross = new ArrayList(  );
+                    for(int i = 0; i < userAllergies.size(); i++)
+                        for(int j = 0; j < allergenData.size(); j++){
+                            if(userAllergies.get( i ).equals(allergenData.get( j ))){
+                                allergentCross.add(userAllergies.get( i ));
                             }
-                        }else{
-                            allDisplay.setText("No Allergens.");
                         }
+                    Log.d( TAG,"Cross data is: "+ allergentCross );
+                    if(!allergentCross.isEmpty()){
+                        allDisplay.setTextColor(Color.parseColor("FF6400"));
+                        allDisplay.append( "Allergens:" );
+                        allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
+                        for(String str : allergentCross){
+                            allDisplay.append( "\n"+str );
+                        }
+                    }else{
+                        allDisplay.setText("No Allergens.");
+                    }
 
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         Log.d(TAG, "DocumentSnapshot data: " + document.get("calories"));
                         Log.d(TAG, "DocumentSnapshot dataAllergens: " + document.get("allergens"));
                         fName.setText(itemChosen);
-                        calories.setText(document.getString("calories"));
-                        sugarData.setText(document.getString("sugar"));
-                        proteinData.setText(document.getString("protein"));
-                        sodiumData.setText(document.getString("sodium"));
-                        transFatData.setText(document.getString("transFat"));
-                        fatData.setText(document.getString("fat"));
-                        carbsData.setText(document.getString("carbs"));
 
                         // choosing the right 2D images
                         ImageView img = (ImageView)findViewById( R.id.imageview_2 );
@@ -160,6 +143,13 @@ public class Infor_window extends AppCompatActivity{
                         }
                         // end of choosing 2D images
 
+                        for(String str : ing){
+                            if(true) { // need to work on this
+                                ings.append("\n" + str);
+                            }else{
+                                ings.append("\n" + str);
+                            }
+                        }
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -168,20 +158,6 @@ public class Infor_window extends AppCompatActivity{
                 }
             }
         });
-/*
-        // Ar camera button
-        final ImageButton arButton = findViewById(R.id.ArButton);
-        arButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            // When user settings start button do this
-            public void onClick(View view) {
-                Log.d("VisiFood", "Clicked AR Button");
-                Intent intent = new Intent(Infor_window.this, Ar.class);
-                startActivity(intent);
-                //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
-
-            }
-        });// end of Ar camera button */
 
         // help button
         final ImageButton helpButton = findViewById(R.id.HelpButton);
@@ -189,8 +165,8 @@ public class Infor_window extends AppCompatActivity{
             @Override
             // When user settings start button do this
             public void onClick(View view) {
-                Log.d("VisiFood", "Clicked Help Button");
-                Intent intent = new Intent(Infor_window.this, helpActivity.class);
+                Log.d("VisiFood", "Clicked Settings Button");
+                Intent intent = new Intent(SeeIngredients.this, helpActivity.class);
                 startActivity(intent);
                 //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
 
@@ -205,15 +181,13 @@ public class Infor_window extends AppCompatActivity{
                 Intent intent;
                 switch (item.getItemId()) {
                     case R.id.AR_item:
-                        Toast.makeText(Infor_window.this, "View AR", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(Infor_window.this, Ar.class);
-                        intent.putExtra("restChosen", restChosen);
-                        intent.putExtra("itemChosen", itemChosen);
+                        Toast.makeText(SeeIngredients.this, "View AR", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(SeeIngredients.this, Ar.class);
                         startActivity(intent);
                         break;
-                    case R.id.ingredient_item:
-                        Toast.makeText(Infor_window.this, "Settings", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(Infor_window.this, SeeIngredients.class);
+                    case R.id.nutrition_item:
+                        Toast.makeText(SeeIngredients.this, "Nutrition Info", Toast.LENGTH_SHORT).show();
+                        intent = new Intent(SeeIngredients.this, Infor_window.class);
                         startActivity(intent);
                         break;
                 }

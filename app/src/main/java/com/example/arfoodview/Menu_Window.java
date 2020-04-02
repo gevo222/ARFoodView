@@ -112,7 +112,7 @@ public class Menu_Window extends AppCompatActivity {
 
                 String item = ((TextView)view).getText().toString();
                 Intent intent = new Intent(Menu_Window.this, Infor_window.class);
-                intent.putExtra("restName", restaurant);
+                intent.putExtra("restChosen", restaurant);
                 intent.putExtra("itemChosen", item);
                 startActivity(intent);
                 //model = item;
