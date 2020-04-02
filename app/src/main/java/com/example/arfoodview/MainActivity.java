@@ -49,11 +49,10 @@ import in.galaxyofandroid.spinerdialog.SpinnerDialog;
 public class MainActivity extends AppCompatActivity {
 
 
-    private ActionBar toolbar;
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 1;
 
     private GoogleMap mMap;
-
+    static String restChosen = "";
     //public static String sel_rest = "";
 
     //This is for requesting permissions
@@ -95,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.profile_icon:
                         Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(MainActivity.this, LoginActivity.class);
+                        intent = new Intent(MainActivity.this, profileActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.settings_icon:
@@ -118,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, RUNTIME_PERMISSIONS, runtime_request);
         }
         final String TAG = "firebaselog";
-        final ImageButton settingsButton = findViewById(R.id.settingsButton);
         //final ImageButton cameraButton = findViewById(R.id.cameraButton);
         final ImageButton helpButton = findViewById(R.id.helpButton);
 
@@ -145,31 +143,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-
-        //Settings button   MainActivity -> Settings
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            // When user settings start button do this
-            public void onClick(View view) {
-                Log.d("VisiFood", "Clicked Settings Button");
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
-
-            }
-        });
-
-        //camera button
-        /*cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            // When user clicks start button do this
-            public void onClick(View view) {
-                Log.d("VisiFood", "Clicked Camera Button");
-                Intent intent = new Intent(MainActivity.this, Ar.class);
-                startActivity(intent);
-            }
-        });*/
-
         //Help button
         helpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,8 +154,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         // Restaurant Array
         initRestaurant();
         spinnerDialog = new SpinnerDialog(MainActivity.this,restaurant,"Select Restaurant");
@@ -192,7 +163,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this, "Selected: "+rest, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, Menu_Window.class);
-                intent.putExtra("Rest_name", rest);
+                //intent.putExtra("Rest_name", rest);
+                restChosen = rest;
                 startActivity(intent);
                 //sel_rest = rest;
                 /*if(rest.equals("SunnyWay")) {

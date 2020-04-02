@@ -24,9 +24,13 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Infor_window"
             android:screenOrientation="portrait"/>
+        <activity android:name=".SeeIngredients"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Menu_Window"
             android:screenOrientation="portrait"/> <!-- android:theme="@style/Theme.AppCompat.NoActionBar"> -->
         <activity android:name=".helpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".profileActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".SettingsActivity"
             android:screenOrientation="portrait"/>

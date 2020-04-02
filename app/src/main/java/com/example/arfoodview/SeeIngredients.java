@@ -3,11 +3,12 @@ package com.example.arfoodview;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -27,10 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeeIngredients extends AppCompatActivity {
-
-
-    private FirebaseFirestore db;
+public class SeeIngredients extends AppCompatActivity{
+    private  FirebaseFirestore db;
     final String TAG = "firebaselog";
     TextView fName;
     TextView allDisplay;
@@ -42,9 +41,9 @@ public class SeeIngredients extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String imageChosen = "salmon";
-        String restChosen = getIntent().getStringExtra("restChosen");
-        String itemChosen = getIntent().getStringExtra("itemChosen");
+        //String imageChosen = "salmon";
+        String restChosen = Menu_Window.chosenRest; //getIntent().getStringExtra("restName");
+        String itemChosen = Menu_Window.chosenItem; //getIntent().getStringExtra("itemChosen");
         userAllergies = new ArrayList<>();
         // populating the textViews
         db = FirebaseFirestore.getInstance();
@@ -89,12 +88,15 @@ public class SeeIngredients extends AppCompatActivity {
                     //for allergens
                     List<String> allergenData = (List<String>) document.get( "allergens" );
                     allergentCross = new ArrayList(  );
+
+                    /* THIS IS CRASHING PAGE/APP
                     for(int i = 0; i < userAllergies.size(); i++)
                         for(int j = 0; j < allergenData.size(); j++){
                             if(userAllergies.get( i ).equals(allergenData.get( j ))){
                                 allergentCross.add(userAllergies.get( i ));
                             }
-                        }
+                        } */
+
                     Log.d( TAG,"Cross data is: "+ allergentCross );
                     if(!allergentCross.isEmpty()){
                         allDisplay.setTextColor(Color.parseColor("FF6400"));
@@ -194,6 +196,5 @@ public class SeeIngredients extends AppCompatActivity {
                 return true;
             }
         });
-
     }
 }

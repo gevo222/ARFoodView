@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +11,11 @@
     android:paddingTop="8dp"
     tools:context="com.example.arfoodview.AllergyActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
     <ListView
         android:id="@+id/lv1"
         android:layout_width="353dp"
@@ -16,11 +23,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginBottom="20dp"
         android:divider="@color/colorPrimary"
-        android:dividerHeight="2dp" />
+        android:dividerHeight="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <SearchView
         android:id="@+id/searchView"
@@ -30,13 +37,17 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="5dp"
         android:backgroundTint="@color/colorPrimary"
         android:foregroundTint="@color/colorPrimary"
         android:iconifiedByDefault="false"
-        android:queryHint="Search Here" />
+        android:queryHint="Search Here"
+        app:layout_constraintBottom_toTopOf="@+id/lv1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.318"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.533" />
 
-</RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

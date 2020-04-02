@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
-    <Button
-        android:id="@+id/b_edit"
-        android:layout_width="84dp"
-        android:layout_height="57dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="edit"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
-        app:layout_constraintStart_toEndOf="@+id/Button"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
-
     <TextView
         android:id="@+id/txtallergies"
         android:layout_width="wrap_content"
@@ -50,24 +35,31 @@
         app:layout_constraintTop_toBottomOf="@+id/txtallergies"
         app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/b_edit"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:text="edit"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/listView" />
+
     <ImageButton
         android:id="@+id/Button"
-        android:layout_width="75dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="68dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:tint="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
-        app:layout_constraintRight_toLeftOf="@id/b_edit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:tint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_menu_help" />
+        app:srcCompat="@drawable/ic_help_icon" />
 
     <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -82,6 +74,7 @@
             app:itemIconTint="#FFFFFF"
             app:itemTextColor="#FFFFFF"
             app:menu="@menu/bottom_nav" />
+
 
     </FrameLayout>
 

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,8 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Infor_window extends AppCompatActivity{
-   private  FirebaseFirestore db;
-   final String TAG = "firebaselog";
+    private  FirebaseFirestore db;
+    final String TAG = "firebaselog";
     TextView fName;
     TextView allDisplay;
     TextView sugarData;
@@ -39,17 +40,16 @@ public class Infor_window extends AppCompatActivity{
     TextView fatData;
     TextView carbsData;
     TextView calories;
-    TextView ings;
-    ListView ingredients;
     List<String> userAllergies; // user given by users
     List<String> allergentCross; // user given by users
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String imageChosen = "salmon";
-        String restChosen = getIntent().getStringExtra("restChosen");
-        String itemChosen = getIntent().getStringExtra("itemChosen");
+        //String imageChosen = "salmon";
+        String restChosen = Menu_Window.chosenRest; //getIntent().getStringExtra("restName");
+        String itemChosen = Menu_Window.chosenItem; //getIntent().getStringExtra("itemChosen");
         userAllergies = new ArrayList<>();
         // populating the textViews
         db = FirebaseFirestore.getInstance();
@@ -64,6 +64,31 @@ public class Infor_window extends AppCompatActivity{
         carbsData = (TextView)findViewById(R.id.carbsDisplay);
         allDisplay = (TextView)findViewById( R.id.allergendisplay );
         // end of populating the textViews
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
+        // Navigation Bar
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+                switch (item.getItemId()) {
+                    case R.id.AR_item:
+                        Toast.makeText(Infor_window.this, "View AR", Toast.LENGTH_SHORT).show();
+                        Log.d("NavigationLog", "Clicked AR");
+                        intent = new Intent(Infor_window.this, Ar.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.ingredient_item:
+                        Toast.makeText(Infor_window.this, "Ingredient Info", Toast.LENGTH_SHORT).show();
+                        Log.d("NavigationLog", "Clicked Ingredients");
+                        intent = new Intent(Infor_window.this, SeeIngredients.class);
+                        startActivity(intent);
+                        break;
+                }
+                return true;
+            }
+        });
 
         String restPath = "restaurants/" + restChosen + "/food";
 
@@ -96,26 +121,31 @@ public class Infor_window extends AppCompatActivity{
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
+                    List<String> ing = (List<String>) document.get("ingredients");
                     //for allergens
                     List<String> allergenData = (List<String>) document.get( "allergens" );
-                     allergentCross = new ArrayList(  );
-                     for(int i = 0; i < userAllergies.size(); i++)
-                         for(int j = 0; j < allergenData.size(); j++){
-                             if(userAllergies.get( i ).equals(allergenData.get( j ))){
-                                 allergentCross.add(userAllergies.get( i ));
-                             }
-                         }
-                     Log.d( TAG,"Cross data is: "+ allergentCross );
-                        if(!allergentCross.isEmpty()){
-                            allDisplay.setTextColor(Color.parseColor("FF6400"));
-                            allDisplay.append( "Allergens:" );
-                            allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
-                            for(String str : allergentCross){
-                                allDisplay.append( "\n"+str );
+                    allergentCross = new ArrayList(  );
+
+                    /* THIS IS CRASHING PAGE/APP
+                    for(int i = 0; i < userAllergies.size(); i++) {
+                        for (int j = 0; j < allergenData.size(); j++) {
+                            if (userAllergies.get(i).equals(allergenData.get(j))) {
+                                allergentCross.add(userAllergies.get(i));
                             }
-                        }else{
-                            allDisplay.setText("No Allergens.");
                         }
+                    }*/
+
+                    Log.d( TAG,"Cross data is: "+ allergentCross );
+                    if(!allergentCross.isEmpty()){
+                        allDisplay.setTextColor(Color.parseColor("FF6400"));
+                        allDisplay.append( "Allergens:" );
+                        allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
+                        for(String str : allergentCross){
+                            allDisplay.append( "\n"+str );
+                        }
+                    }else{
+                        allDisplay.setText("No Allergens.");
+                    }
 
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
@@ -159,7 +189,6 @@ public class Infor_window extends AppCompatActivity{
                                 break;
                         }
                         // end of choosing 2D images
-
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -168,20 +197,6 @@ public class Infor_window extends AppCompatActivity{
                 }
             }
         });
-/*
-        // Ar camera button
-        final ImageButton arButton = findViewById(R.id.ArButton);
-        arButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            // When user settings start button do this
-            public void onClick(View view) {
-                Log.d("VisiFood", "Clicked AR Button");
-                Intent intent = new Intent(Infor_window.this, Ar.class);
-                startActivity(intent);
-                //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
-
-            }
-        });// end of Ar camera button */
 
         // help button
         final ImageButton helpButton = findViewById(R.id.HelpButton);
@@ -189,37 +204,12 @@ public class Infor_window extends AppCompatActivity{
             @Override
             // When user settings start button do this
             public void onClick(View view) {
-                Log.d("VisiFood", "Clicked Help Button");
-                Intent intent = new Intent(Infor_window.this, helpActivity.class);
-                startActivity(intent);
+                Log.d("VisiFood", "Clicked Settings Button");
+                Intent Hintent = new Intent(Infor_window.this, helpActivity.class);
+                startActivity(Hintent);
                 //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
 
             }
         });
-
-        // Navigation Bar
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent;
-                switch (item.getItemId()) {
-                    case R.id.AR_item:
-                        Toast.makeText(Infor_window.this, "View AR", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(Infor_window.this, Ar.class);
-                        intent.putExtra("restChosen", restChosen);
-                        intent.putExtra("itemChosen", itemChosen);
-                        startActivity(intent);
-                        break;
-                    case R.id.ingredient_item:
-                        Toast.makeText(Infor_window.this, "Settings", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(Infor_window.this, SeeIngredients.class);
-                        startActivity(intent);
-                        break;
-                }
-                return true;
-            }
-        });
-
     }
 }

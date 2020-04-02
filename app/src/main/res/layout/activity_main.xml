@@ -7,29 +7,6 @@
     android:background="#FFFFFF"
     tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/helpButton"
-        android:layout_width="49dp"
-        android:layout_height="47dp"
-        android:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/btnShow"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_help" />
-
-    <ImageButton
-        android:id="@+id/settingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:foregroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/btnShow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_settings_applications_24px" />
-
     <Button
         android:id="@+id/btnShow"
         style="@style/Widget.AppCompat.Button"
@@ -46,6 +23,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.319" />
+
+    <ImageButton
+        android:id="@+id/helpButton"
+        android:layout_width="49dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@android:color/transparent"
+        android:tint="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_help_icon" />
 
 
     <!--
@@ -93,10 +82,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-87dp"
+        tools:layout_editor_absoluteY="8dp">
 
         <!-- Main content -->
 

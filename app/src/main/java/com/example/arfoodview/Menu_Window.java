@@ -30,6 +30,8 @@ import java.util.ArrayList;
 
 public class Menu_Window extends AppCompatActivity {
    static String model = "";
+   static String chosenRest = "";
+   static String chosenItem = "";
     FirebaseFirestore db;
     SearchView searchView;
     ListView listView;
@@ -51,7 +53,7 @@ public class Menu_Window extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu__window);
 
-        String restaurant = getIntent().getStringExtra("Rest_name");
+        String restaurant = MainActivity.restChosen; //getIntent().getStringExtra("Rest_name");
 
         TextView tView = (TextView) findViewById(R.id.RestName);
         String rName = restaurant + " Menu";
@@ -112,8 +114,10 @@ public class Menu_Window extends AppCompatActivity {
 
                 String item = ((TextView)view).getText().toString();
                 Intent intent = new Intent(Menu_Window.this, Infor_window.class);
-                intent.putExtra("restChosen", restaurant);
-                intent.putExtra("itemChosen", item);
+                chosenRest = restaurant;
+                chosenItem = item;
+                //intent.putExtra("restChosen", restaurant);
+                //intent.putExtra("itemChosen", item);
                 startActivity(intent);
                 //model = item;
                 //System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" );

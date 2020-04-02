@@ -48,41 +48,11 @@ public class LoginActivity extends AppCompatActivity {
 
         //end
 
-        // Navigation Bar
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent;
-                switch (item.getItemId()) {
-                    case R.id.profile_icon:
-                        Toast.makeText(LoginActivity.this, "Profile", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.search_icon:
-                        Toast.makeText(LoginActivity.this, "Search", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.settings_icon:
-                        Toast.makeText(LoginActivity.this, "Settings", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(LoginActivity.this, SettingsActivity.class);
-                        startActivity(intent);
-                        break;
-                }
-                return true;
-            }
-        });
-
-
 
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             // When user settings start button do this
             public void onClick(View view) {
-
-                // SKIPPING LOGIN FOR NOW
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
 
                 String email = mEmailText.getText().toString().trim();
                 String password = mPasswordText.getText().toString().trim();
