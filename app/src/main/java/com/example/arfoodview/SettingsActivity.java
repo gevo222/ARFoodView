@@ -1,6 +1,7 @@
 package com.example.arfoodview;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -24,6 +25,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -39,12 +46,13 @@ import java.util.Set;
 public class SettingsActivity extends AppCompatActivity {
 
     Switch switch1;
-    FirebaseFirestore db;
+    //FirebaseFirestore db;
     Button edit;
     ImageButton button;
     ListView listView;
     ArrayList<String> userAllergies;
     ArrayAdapter<String > adapter;
+    FirebaseAuth fAuth;
     public static boolean switchState1;
 
 
@@ -55,7 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         String restaurant = getIntent().getStringExtra("Rest_name");
-
+        fAuth = FirebaseAuth.getInstance();
         preferences = getSharedPreferences("PREFS", 0);
         switchState1 = preferences.getBoolean("switch1", false);
 
@@ -64,11 +72,51 @@ public class SettingsActivity extends AppCompatActivity {
         button = findViewById( R.id.Button );
         listView = (ListView) findViewById(R.id.listView);
         String TAG = "firebase_menu_window";
+        userAllergies = new ArrayList<>();
 
 
-        db = FirebaseFirestore.getInstance();
+        //db = FirebaseFirestore.getInstance();
 
-        String restPath = "restaurants/" + restaurant + "/food";
+        String user_id = fAuth.getCurrentUser().getUid();
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("Userss").child(user_id).child("allergies");
+        adapter = new ArrayAdapter<String>(SettingsActivity.this, android.R.layout.simple_list_item_1,userAllergies);
+        listView.setAdapter(adapter);
+
+        userAllergies.clear();
+        mRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String value = dataSnapshot.getValue(String.class);
+                userAllergies.add(value);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                userAllergies.remove(value);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+       /* String restPath = "restaurants/" + restaurant + "/food";
 
         // this is done to get the allergens
         DocumentReference docAllergyref = db.collection("users").document("temporary");
@@ -93,7 +141,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
 
-        });
+        });*/
 
         // Navigation Bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
