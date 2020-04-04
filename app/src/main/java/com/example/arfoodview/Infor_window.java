@@ -84,6 +84,7 @@ public class Infor_window extends AppCompatActivity{
                         Log.d("NavigationLog", "Clicked Ingredients");
                         intent = new Intent(Infor_window.this, SeeIngredients.class);
                         startActivity(intent);
+                        finish();
                         break;
                 }
                 return true;
@@ -126,7 +127,7 @@ public class Infor_window extends AppCompatActivity{
                     List<String> allergenData = (List<String>) document.get( "allergens" );
                     allergentCross = new ArrayList(  );
 
-                    /* THIS IS CRASHING PAGE/APP
+                    /* // THIS IS CRASHING PAGE/APP (either time complexity or code itself)
                     for(int i = 0; i < userAllergies.size(); i++) {
                         for (int j = 0; j < allergenData.size(); j++) {
                             if (userAllergies.get(i).equals(allergenData.get(j))) {
@@ -211,5 +212,23 @@ public class Infor_window extends AppCompatActivity{
 
             }
         });
+
+        // to hide android's nav bar
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+    }// end of onCreate
+
+    // to hide android's nav bar
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
     }
 }

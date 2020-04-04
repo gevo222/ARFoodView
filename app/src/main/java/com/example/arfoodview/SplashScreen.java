@@ -5,14 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SplashScreen extends Activity {
     // Splash screen timer
-    private static int SPLASH_TIME_OUT = 3000;
-
+    private static int SPLASH_TIME_OUT = 1000;
+    FirebaseAuth fAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        // for some reason there is a signed in user when app is opened, this signs him out
+        fAuth = FirebaseAuth.getInstance();
+        fAuth.signOut();
 
         new Handler().postDelayed(new Runnable() {
 

@@ -41,10 +41,12 @@ public class RegisterActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         //progressBar = findViewById(R.id.progressBar);
 
-
+/*
         if(fAuth.getCurrentUser() != null) {
-           //startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        }
+           startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        } else {
+            startActivity(new Intent(getApplicationContext(),helpActivity.class));
+        }*/
 
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override

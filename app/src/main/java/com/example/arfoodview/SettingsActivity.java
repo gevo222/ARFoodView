@@ -62,10 +62,12 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        String restaurant = getIntent().getStringExtra("Rest_name");
         fAuth = FirebaseAuth.getInstance();
+
         preferences = getSharedPreferences("PREFS", 0);
         switchState1 = preferences.getBoolean("switch1", false);
+
+
 
         //switch1 = findViewById(R.id.AllegiesSwitch);
         edit = findViewById(R.id.b_edit);
@@ -73,7 +75,6 @@ public class SettingsActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
         String TAG = "firebase_menu_window";
         userAllergies = new ArrayList<>();
-
 
         //db = FirebaseFirestore.getInstance();
 
@@ -155,13 +156,15 @@ public class SettingsActivity extends AppCompatActivity {
                         break;
                     case R.id.profile_icon:
                         Toast.makeText(SettingsActivity.this, "Profile", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                        intent = new Intent(SettingsActivity.this, profileActivity.class);
                         startActivity(intent);
+                        finish();
                         break;
                     case R.id.search_icon:
                         Toast.makeText(SettingsActivity.this, "Search", Toast.LENGTH_SHORT).show();
                         intent = new Intent(SettingsActivity.this, MainActivity.class);
                         startActivity(intent);
+                        finish();
                         break;
                 }
                 return true;
@@ -228,7 +231,26 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        // to hide android's nav bar
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+
+    } // end of onCreate
+
+    // to hide android's nav bar
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
     }
+
     public static void Count(){
         // this is just a test for Git commit
         // this is ron's test... change if need be.
