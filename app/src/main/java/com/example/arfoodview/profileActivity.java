@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,16 +16,31 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class profileActivity extends AppCompatActivity {
 
-
+    Button mLogoutButton;
     FirebaseAuth fAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_activity);
 
+        mLogoutButton = findViewById(R.id.logoutButton);
         fAuth = FirebaseAuth.getInstance();
+
+        mLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                fAuth.signOut();
+                Intent intent = new Intent(profileActivity.this, LoginActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
 /*
+
         if(fAuth.getCurrentUser() == null) {
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         }

@@ -43,12 +43,12 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         if(fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+           //startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
 
         mSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            // When user settings start button do this
+
             public void onClick(View view) {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
