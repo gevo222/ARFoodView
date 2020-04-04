@@ -71,9 +71,9 @@ public class AllergyActivity extends AppCompatActivity {
         list.add("School");  //lol
         list.add("i dunno");
 
+
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,list);
         listView.setAdapter(adapter);
-
 
         String user_id = fAuth.getCurrentUser().getUid();
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("Userss").child(user_id).child("allergies");
@@ -157,6 +157,7 @@ public class AllergyActivity extends AppCompatActivity {
             }
         });
 
+
         //color change and adding/removing clicked from allergies list
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -164,17 +165,18 @@ public class AllergyActivity extends AppCompatActivity {
 
                 String item = ((TextView)view).getText().toString();
 
-                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
                 if (allergies.contains(item)) {
                     allergies.remove(item);
 
-                    ((TextView) view).setTextColor(Color.BLACK);
+                    ((TextView) view).setTextColor(Color.RED);
                     ((TextView) view).setAllCaps(false);
+                    Toast.makeText(getBaseContext(), item+ " removed", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     allergies.add(item);
                     ((TextView) view).setTextColor(Color.rgb(0,128,0));
                     ((TextView) view).setAllCaps(true);
+                    Toast.makeText(getBaseContext(), item+ " added", Toast.LENGTH_SHORT).show();
                 }
 
                 Log.d("hi",""+allergies);
