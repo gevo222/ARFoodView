@@ -16,11 +16,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -43,6 +50,8 @@ public class Infor_window extends AppCompatActivity{
     List<String> userAllergies; // user given by users
     List<String> allergentCross; // user given by users
     BottomNavigationView bottomNavigationView;
+    FirebaseAuth fAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,9 +100,45 @@ public class Infor_window extends AppCompatActivity{
             }
         });
 
+        fAuth = FirebaseAuth.getInstance();
+        String user_id = fAuth.getCurrentUser().getUid();
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("Userss").child(user_id).child("allergies");
+
+        userAllergies.clear();
+        mRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                String value = dataSnapshot.getValue(String.class);
+                userAllergies.add(value);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                userAllergies.remove(value);
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         String restPath = "restaurants/" + restChosen + "/food";
 
-        // this is done to get the allergens
+       /* // this is done to get the allergens
         DocumentReference docAllergyref = db.collection("users").document("temporary");
         docAllergyref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -113,7 +158,7 @@ public class Infor_window extends AppCompatActivity{
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
-        });
+        });*/
 
         DocumentReference docRef = db.collection(restPath).document(itemChosen);
 
@@ -127,18 +172,18 @@ public class Infor_window extends AppCompatActivity{
                     List<String> allergenData = (List<String>) document.get( "allergens" );
                     allergentCross = new ArrayList(  );
 
-                    /* // THIS IS CRASHING PAGE/APP (either time complexity or code itself)
+
                     for(int i = 0; i < userAllergies.size(); i++) {
                         for (int j = 0; j < allergenData.size(); j++) {
                             if (userAllergies.get(i).equals(allergenData.get(j))) {
                                 allergentCross.add(userAllergies.get(i));
                             }
                         }
-                    }*/
+                    }
 
                     Log.d( TAG,"Cross data is: "+ allergentCross );
                     if(!allergentCross.isEmpty()){
-                        allDisplay.setTextColor(Color.parseColor("FF6400"));
+                        //allDisplay.setTextColor(Color.parseColor("FF6400"));
                         allDisplay.append( "Allergens:" );
                         allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
                         for(String str : allergentCross){
@@ -151,7 +196,7 @@ public class Infor_window extends AppCompatActivity{
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         Log.d(TAG, "DocumentSnapshot data: " + document.get("calories"));
-                        Log.d(TAG, "DocumentSnapshot dataAllergens: " + document.get("allergens"));
+                        //Log.d(TAG, "DocumentSnapshot dataAllergens: " + document.get("allergens"));
                         fName.setText(itemChosen);
                         calories.setText(document.getString("calories"));
                         sugarData.setText(document.getString("sugar"));

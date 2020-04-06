@@ -83,7 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(SettingsActivity.this, android.R.layout.simple_list_item_1,userAllergies);
         listView.setAdapter(adapter);
 
-        userAllergies.clear();
+
         mRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
