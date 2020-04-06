@@ -15,7 +15,8 @@ import com.google.ar.sceneform.ux.TransformableNode;
 
 public class Ar extends AppCompatActivity {
     private ArFragment arFragment;
-    String actualModel="";
+    String actualModel=" ";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

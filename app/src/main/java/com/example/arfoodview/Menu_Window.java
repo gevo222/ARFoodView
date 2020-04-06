@@ -117,11 +117,11 @@ public class Menu_Window extends AppCompatActivity {
                 chosenRest = restaurant;
                 chosenItem = item;
                 //intent.putExtra("restChosen", restaurant);
-                //intent.putExtra("itemChosen", item);
+                intent.putExtra("itemChosen", item);
                 startActivity(intent);
-                //model = item;
-                //System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" );
-                //System.out.println( "Model chosen is: "+model );
+                model = item;
+                System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" );
+                System.out.println( "Model chosen is: "+model );
 
             }
         });
