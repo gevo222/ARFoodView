@@ -127,14 +127,14 @@ public class Infor_window extends AppCompatActivity{
                     List<String> allergenData = (List<String>) document.get( "allergens" );
                     allergentCross = new ArrayList(  );
 
-                    /* // THIS IS CRASHING PAGE/APP (either time complexity or code itself)
+                    // THIS IS CRASHING PAGE/APP (either time complexity or code itself)
                     for(int i = 0; i < userAllergies.size(); i++) {
                         for (int j = 0; j < allergenData.size(); j++) {
                             if (userAllergies.get(i).equals(allergenData.get(j))) {
                                 allergentCross.add(userAllergies.get(i));
                             }
                         }
-                    }*/
+                    }
 
                     Log.d( TAG,"Cross data is: "+ allergentCross );
                     if(!allergentCross.isEmpty()){
