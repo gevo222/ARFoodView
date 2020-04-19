@@ -11,6 +11,11 @@
         android:title="Ingredients" />
 
     <item
+        android:id="@+id/review_item"
+        android:icon="@drawable/ic_rate_icon"
+        android:title="Reviews" />
+
+    <item
         android:id="@+id/AR_item"
         android:icon="@drawable/ic_see_ar"
         android:title="See AR" />

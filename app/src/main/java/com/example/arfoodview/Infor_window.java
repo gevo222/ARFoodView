@@ -82,6 +82,12 @@ public class Infor_window extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Intent intent;
                 switch (item.getItemId()) {
+                    case R.id.review_item:
+                        Toast.makeText(Infor_window.this, "Reviews", Toast.LENGTH_SHORT).show();
+                        Log.d("NavigationLog", "Clicked Reviews");
+                        intent = new Intent(Infor_window.this, ReviewActivity.class);
+                        startActivity(intent);
+                        break;
                     case R.id.AR_item:
                         Toast.makeText(Infor_window.this, "View AR", Toast.LENGTH_SHORT).show();
                         Log.d("NavigationLog", "Clicked AR");
@@ -102,9 +108,9 @@ public class Infor_window extends AppCompatActivity{
 
         fAuth = FirebaseAuth.getInstance();
         String user_id = fAuth.getCurrentUser().getUid();
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("Userss").child(user_id).child("allergies");
-
         userAllergies.clear();
+
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("Userss").child(user_id).child("allergies");
         mRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -183,7 +189,8 @@ public class Infor_window extends AppCompatActivity{
 
                     Log.d( TAG,"Cross data is: "+ allergentCross );
                     if(!allergentCross.isEmpty()){
-                        //allDisplay.setTextColor(Color.parseColor("FF6400"));
+                        allDisplay.setTextColor(Color.parseColor("#FF6400"));
+                        //allDisplay.setTextColor(color.RED);
                         allDisplay.append( "Allergens:" );
                         allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
                         for(String str : allergentCross){

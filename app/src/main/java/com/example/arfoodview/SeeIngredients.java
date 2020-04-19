@@ -134,17 +134,18 @@ public class SeeIngredients extends AppCompatActivity{
                     List<String> allergenData = (List<String>) document.get( "allergens" );
                     allergentCross = new ArrayList(  );
 
-                    /* THIS IS CRASHING PAGE/APP
-                    for(int i = 0; i < userAllergies.size(); i++)
-                        for(int j = 0; j < allergenData.size(); j++){
-                            if(userAllergies.get( i ).equals(allergenData.get( j ))){
-                                allergentCross.add(userAllergies.get( i ));
+                    for(int i = 0; i < userAllergies.size(); i++) {
+                        for (int j = 0; j < allergenData.size(); j++) {
+                            if (userAllergies.get(i).equals(allergenData.get(j))) {
+                                allergentCross.add(userAllergies.get(i));
                             }
-                        } */
+                        }
+                    }
 
                     Log.d( TAG,"Cross data is: "+ allergentCross );
                     if(!allergentCross.isEmpty()){
-                        allDisplay.setTextColor(Color.parseColor("FF6400"));
+                        allDisplay.setTextColor(Color.parseColor("#FF6400"));
+                        //allDisplay.setTextColor(color.RED);
                         allDisplay.append( "Allergens:" );
                         allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
                         for(String str : allergentCross){
@@ -153,6 +154,7 @@ public class SeeIngredients extends AppCompatActivity{
                     }else{
                         allDisplay.setText("No Allergens.");
                     }
+
 
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
@@ -227,6 +229,12 @@ public class SeeIngredients extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Intent intent;
                 switch (item.getItemId()) {
+                    case R.id.review_item:
+                        Toast.makeText(SeeIngredients.this, "Reviews", Toast.LENGTH_SHORT).show();
+                        Log.d("NavigationLog", "Clicked Reviews");
+                        intent = new Intent(SeeIngredients.this, ReviewActivity.class);
+                        startActivity(intent);
+                        break;
                     case R.id.AR_item:
                         Toast.makeText(SeeIngredients.this, "View AR", Toast.LENGTH_SHORT).show();
                         intent = new Intent(SeeIngredients.this, Ar.class);
