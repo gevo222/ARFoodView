@@ -229,12 +229,6 @@ public class SeeIngredients extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Intent intent;
                 switch (item.getItemId()) {
-                    case R.id.review_item:
-                        Toast.makeText(SeeIngredients.this, "Reviews", Toast.LENGTH_SHORT).show();
-                        Log.d("NavigationLog", "Clicked Reviews");
-                        intent = new Intent(SeeIngredients.this, ReviewActivity.class);
-                        startActivity(intent);
-                        break;
                     case R.id.AR_item:
                         Toast.makeText(SeeIngredients.this, "View AR", Toast.LENGTH_SHORT).show();
                         intent = new Intent(SeeIngredients.this, Ar.class);

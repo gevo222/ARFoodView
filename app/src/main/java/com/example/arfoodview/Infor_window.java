@@ -82,12 +82,6 @@ public class Infor_window extends AppCompatActivity{
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Intent intent;
                 switch (item.getItemId()) {
-                    case R.id.review_item:
-                        Toast.makeText(Infor_window.this, "Reviews", Toast.LENGTH_SHORT).show();
-                        Log.d("NavigationLog", "Clicked Reviews");
-                        intent = new Intent(Infor_window.this, ReviewActivity.class);
-                        startActivity(intent);
-                        break;
                     case R.id.AR_item:
                         Toast.makeText(Infor_window.this, "View AR", Toast.LENGTH_SHORT).show();
                         Log.d("NavigationLog", "Clicked AR");
