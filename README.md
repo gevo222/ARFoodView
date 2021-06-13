@@ -6,8 +6,8 @@ An Android augmented reality food menu application built with Java, ARCore, and 
 * Storing realtime data for each user in Firebase.
 * Storing nested data in Firebase (Restaurant stores Food which stores Ingredients).
 * Creating editable lists that interact with the database.
-* Implementing search bars
-* Working with Augmented Reality
+* Implementing search bars.
+* Working with Augmented Reality.
 
 ## Summary:
 * Users create accounts and login/logout.
