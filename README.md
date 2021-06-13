@@ -1,16 +1,19 @@
-## ARFoodView
-Augmented Reality food menus
-## Run
-```
-cd desktop/ARFoodView
-```
-or 
-```
-clone to your android studios
-```
+# ARFoodView
+An Android augmented reality food menu application built with Java, ARCore, and Firebase.
+
+# What I Learned
+* User authentication with Firebase.
+* Storing realtime data for each user in Firebase.
+* Storing nested data in Firebase (Restaurant stores Food which stores Ingredients).
+* Creating editable lists that interact with the database.
+* Implementing search bars
+* Working with Augmented Reality
 
 ## Summary:
-This project is an app that a user can use at home. User will be able to lookup an x restaurant and dish at that restuarant
-and will be able to see the dish in an Augmented Reality View of that dish. User will also be able to see information like
-calories, macros, ingredients, etc. The app will also detect any allergic ingredients that the user has said he is allergic
-to in our app. 
+* Users create accounts and login/logout.
+* Users can edit their allergens.
+* Users can look up restaurants. 
+* Users can look up food at that restaurant.
+* Each food has ingredients and an AR model.
+* App will warn user of allergens.
+* App can display AR models of food.
