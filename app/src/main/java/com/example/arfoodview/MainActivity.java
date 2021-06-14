@@ -7,53 +7,25 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import android.os.Bundle;
-
-
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 
-import javax.annotation.Nullable;
-
-import in.galaxyofandroid.spinerdialog.OnSpinerItemClick;
 import in.galaxyofandroid.spinerdialog.SpinnerDialog;
-
 
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private static final int REQUEST_CODE_ASK_PERMISSIONS = 1;
-
-    private GoogleMap mMap;
-    static String restChosen = "";
-    //public static String sel_rest = "";
 
     //This is for requesting permissions
     private static final String[] RUNTIME_PERMISSIONS = {
@@ -65,48 +37,56 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_NETWORK_STATE,
             Manifest.permission.CAMERA
     };
-
+    static String restChosen = "";
+    //public static String sel_rest = "";
     int runtime_request = 1; //used in .requestPermissions()   for error message
-
     // Arraylist
     ArrayList<String> restaurant = new ArrayList<>();
     SpinnerDialog spinnerDialog;
     Button btnShow;
 
+    private static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        } else {
+            Log.d("food", "OS Build Version Not Met");
+        }
+        return true;
+    }
+
+    // Navigation Bar
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-          //      .findFragmentById(R.id.map);
-        //mapFragment.getMapAsync((OnMapReadyCallback) this);
-        DataBaseHelper myDB = new DataBaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // Navigation Bar
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent;
-                switch (item.getItemId()) {
-                    case R.id.search_icon:
-                        Toast.makeText(MainActivity.this, "Search", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.profile_icon:
-                        Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(MainActivity.this, profileActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.settings_icon:
-                        Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
-                        intent = new Intent(MainActivity.this, SettingsActivity.class);
-                        startActivity(intent);
-                        break;
-                }
-                return true;
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            Intent intent;
+            switch (item.getItemId()) {
+                case R.id.search_icon:
+                    Toast.makeText(MainActivity.this, "Search", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.profile_icon:
+                    Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(MainActivity.this, profileActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.settings_icon:
+                    Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivity(intent);
+                    break;
             }
+            return true;
         });
-
 
 
         if (hasPermissions(this, RUNTIME_PERMISSIONS)) {
@@ -116,12 +96,11 @@ public class MainActivity extends AppCompatActivity {
             Log.d("food", "Runtime permissions not granted");
             ActivityCompat.requestPermissions(this, RUNTIME_PERMISSIONS, runtime_request);
         }
-        final String TAG = "firebaselog";
         //final ImageButton cameraButton = findViewById(R.id.cameraButton);
         final ImageButton helpButton = findViewById(R.id.helpButton);
 
         // initiate the database
-       // myDB = new DataBaseHelper(this);
+        // myDB = new DataBaseHelper(this);
         /*
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -144,47 +123,36 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         //Help button
-        helpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            // When user clicks start button do this
-            public void onClick(View view) {
-                Log.d("VisiFood", "Clicked Help Button");
-                Intent intent = new Intent(MainActivity.this, helpActivity.class);
-                startActivity(intent);
-            }
+        // When user clicks start button do this
+        helpButton.setOnClickListener(view -> {
+            Log.d("VisiFood", "Clicked Help Button");
+            Intent intent = new Intent(MainActivity.this, helpActivity.class);
+            startActivity(intent);
         });
 
         // Restaurant Array
         initRestaurant();
-        spinnerDialog = new SpinnerDialog(MainActivity.this,restaurant,"Select Restaurant");
-        spinnerDialog.bindOnSpinerListener(new OnSpinerItemClick() {
-            @Override
-            public void onClick(String rest, int position) {
+        spinnerDialog = new SpinnerDialog(MainActivity.this, restaurant, "Select Restaurant");
+        spinnerDialog.bindOnSpinerListener((rest, position) -> {
 
-                Toast.makeText(MainActivity.this, "Selected: "+rest, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, Menu_Window.class);
-                //intent.putExtra("Rest_name", rest);
-                restChosen = rest;
+            Toast.makeText(MainActivity.this, "Selected: " + rest, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, Menu_Window.class);
+            //intent.putExtra("Rest_name", rest);
+            restChosen = rest;
+            startActivity(intent);
+            //sel_rest = rest;
+            /*if(rest.equals("SunnyWay")) {
+                Intent intent = new Intent(MainActivity.this, restActivity.class);
                 startActivity(intent);
-                //sel_rest = rest;
-                /*if(rest.equals("SunnyWay")) {
-                    Intent intent = new Intent(MainActivity.this, restActivity.class);
-                    startActivity(intent);
-                }*/
-            }
+            }*/
         });
 
 
-
-
-        btnShow = (Button)findViewById(R.id.btnShow);
-        btnShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-             public void onClick(View v) {
-                spinnerDialog.showSpinerDialog();
-                //Intent intent = new Intent(MainActivity.this, restActivity.class);
-                //startActivity(intent);
-            }
+        btnShow = (Button) findViewById(R.id.btnShow);
+        btnShow.setOnClickListener(v -> {
+            spinnerDialog.showSpinerDialog();
+            //Intent intent = new Intent(MainActivity.this, restActivity.class);
+            //startActivity(intent);
         });
 
         // to hide android's nav bar
@@ -207,34 +175,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Navigation Bar
-
-    //@Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // Add a marker in Sydney, Australia, and move the camera.
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
-
-
     private void initRestaurant() {
 
         String TAG = "sunny";
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("restaurants").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException e) {
+        db.collection("restaurants").addSnapshotListener((documentSnapshots, e) -> {
 
-                if(e != null) {
-                    Log.d(TAG, "error: " + e.getMessage());
-                }
+            if (e != null) {
+                Log.d(TAG, "error: " + e.getMessage());
+            }
 
-                for(DocumentSnapshot doc: documentSnapshots) {
+            if (documentSnapshots != null) {
+                for (DocumentSnapshot doc : documentSnapshots) {
                     String restName = doc.getId();
                     restaurant.add(restName);
                 }
@@ -242,22 +196,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-    private static boolean hasPermissions(Context context, String... permissions) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        } else {
-            Log.d("food", "OS Build Version Not Met");
-        }
-        return true;
-    }
-public static void Count(){
-        // this is just a test for Git commit
-    // this is ron's test... change if need be.
-}
 }
