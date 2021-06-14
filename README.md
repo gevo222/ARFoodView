@@ -1,5 +1,5 @@
 # ARFoodView
-An Android augmented reality food menu application built with Java, ARCore, and Firebase.
+An Android augmented reality food menu application built in Android Studio with Java, ARCore, and Firebase.
 
 # What I Learned
 * User authentication with Firebase.
