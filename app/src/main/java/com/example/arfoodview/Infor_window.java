@@ -5,13 +5,9 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -34,9 +28,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class Infor_window extends AppCompatActivity{
-    private  FirebaseFirestore db;
+public class Infor_window extends AppCompatActivity {
     final String TAG = "firebaselog";
     TextView fName;
     TextView allDisplay;
@@ -52,7 +46,6 @@ public class Infor_window extends AppCompatActivity{
     BottomNavigationView bottomNavigationView;
     FirebaseAuth fAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,47 +54,43 @@ public class Infor_window extends AppCompatActivity{
         String itemChosen = Menu_Window.chosenItem; //getIntent().getStringExtra("itemChosen");
         userAllergies = new ArrayList<>();
         // populating the textViews
-        db = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         setContentView(R.layout.activity_infor_window);
-        fName = (TextView)findViewById(R.id.displayFoodName);
-        calories = (TextView)findViewById(R.id.calDisplay);
-        sugarData = (TextView)findViewById(R.id.sugarDisplay);
-        proteinData = (TextView)findViewById(R.id.proteinDisplay);
-        sodiumData = (TextView)findViewById(R.id.NaDisplay);
-        transFatData = (TextView)findViewById(R.id.taDisplay);
-        fatData = (TextView)findViewById(R.id.fatDisplay);
-        carbsData = (TextView)findViewById(R.id.carbsDisplay);
-        allDisplay = (TextView)findViewById( R.id.allergendisplay );
+        fName = (TextView) findViewById(R.id.displayFoodName);
+        calories = (TextView) findViewById(R.id.calDisplay);
+        sugarData = (TextView) findViewById(R.id.sugarDisplay);
+        proteinData = (TextView) findViewById(R.id.proteinDisplay);
+        sodiumData = (TextView) findViewById(R.id.NaDisplay);
+        transFatData = (TextView) findViewById(R.id.taDisplay);
+        fatData = (TextView) findViewById(R.id.fatDisplay);
+        carbsData = (TextView) findViewById(R.id.carbsDisplay);
+        allDisplay = (TextView) findViewById(R.id.allergendisplay);
         // end of populating the textViews
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
         // Navigation Bar
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent;
-                switch (item.getItemId()) {
-                    case R.id.AR_item:
-                        Toast.makeText(Infor_window.this, "View AR", Toast.LENGTH_SHORT).show();
-                        Log.d("NavigationLog", "Clicked AR");
-                        intent = new Intent(Infor_window.this, Ar.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.ingredient_item:
-                        Toast.makeText(Infor_window.this, "Ingredient Info", Toast.LENGTH_SHORT).show();
-                        Log.d("NavigationLog", "Clicked Ingredients");
-                        intent = new Intent(Infor_window.this, SeeIngredients.class);
-                        startActivity(intent);
-                        finish();
-                        break;
-                }
-                return true;
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            Intent intent;
+            switch (item.getItemId()) {
+                case R.id.AR_item:
+                    Toast.makeText(Infor_window.this, "View AR", Toast.LENGTH_SHORT).show();
+                    Log.d("NavigationLog", "Clicked AR");
+                    intent = new Intent(Infor_window.this, Ar.class);
+                    startActivity(intent);
+                    break;
+                case R.id.ingredient_item:
+                    Toast.makeText(Infor_window.this, "Ingredient Info", Toast.LENGTH_SHORT).show();
+                    Log.d("NavigationLog", "Clicked Ingredients");
+                    intent = new Intent(Infor_window.this, SeeIngredients.class);
+                    startActivity(intent);
+                    finish();
+                    break;
             }
+            return true;
         });
 
         fAuth = FirebaseAuth.getInstance();
-        String user_id = fAuth.getCurrentUser().getUid();
+        String user_id = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
         userAllergies.clear();
 
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference().child("Userss").child(user_id).child("allergies");
@@ -138,62 +127,44 @@ public class Infor_window extends AppCompatActivity{
 
         String restPath = "restaurants/" + restChosen + "/food";
 
-       /* // this is done to get the allergens
-        DocumentReference docAllergyref = db.collection("users").document("temporary");
-        docAllergyref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    userAllergies = (List<String>) document.get( "allergies" );
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        userAllergies = (ArrayList<String>) document.get("allergies");
-                        Log.d(TAG, "DocumentSnapshot data: " + document.get("allergies"));
-                        Log.d(TAG, ""+userAllergies.contains("Peanuts"));
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });*/
 
         DocumentReference docRef = db.collection(restPath).document(itemChosen);
 
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    List<String> ing = (List<String>) document.get("ingredients");
-                    //for allergens
-                    List<String> allergenData = (List<String>) document.get( "allergens" );
-                    allergentCross = new ArrayList(  );
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                //for allergens
+                List<String> allergenData = null;
+                if (document != null) {
+                    allergenData = (List<String>) document.get("allergens");
+                }
+                allergentCross = new ArrayList();
 
 
-                    for(int i = 0; i < userAllergies.size(); i++) {
+                for (int i = 0; i < userAllergies.size(); i++) {
+                    if (allergenData != null) {
                         for (int j = 0; j < allergenData.size(); j++) {
                             if (userAllergies.get(i).equals(allergenData.get(j))) {
                                 allergentCross.add(userAllergies.get(i));
                             }
                         }
                     }
+                }
 
-                    Log.d( TAG,"Cross data is: "+ allergentCross );
-                    if(!allergentCross.isEmpty()){
-                        allDisplay.setTextColor(Color.parseColor("#FF6400"));
-                        //allDisplay.setTextColor(color.RED);
-                        allDisplay.append( "Allergens:" );
-                        allDisplay.setTypeface( Typeface.DEFAULT_BOLD);
-                        for(String str : allergentCross){
-                            allDisplay.append( "\n"+str );
-                        }
-                    }else{
-                        allDisplay.setText("No Allergens.");
+                Log.d(TAG, "Cross data is: " + allergentCross);
+                if (!allergentCross.isEmpty()) {
+                    allDisplay.setTextColor(Color.parseColor("#FF6400"));
+                    //allDisplay.setTextColor(color.RED);
+                    allDisplay.append("Allergens:");
+                    allDisplay.setTypeface(Typeface.DEFAULT_BOLD);
+                    for (String str : allergentCross) {
+                        allDisplay.append("\n" + str);
                     }
+                } else {
+                    allDisplay.setText("No Allergens.");
+                }
 
+                if (document != null) {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         Log.d(TAG, "DocumentSnapshot data: " + document.get("calories"));
@@ -208,7 +179,7 @@ public class Infor_window extends AppCompatActivity{
                         carbsData.setText(document.getString("carbs"));
 
                         // choosing the right 2D images
-                        ImageView img = (ImageView)findViewById( R.id.imageview_2 );
+                        ImageView img = (ImageView) findViewById(R.id.imageview_2);
                         switch (itemChosen) {
                             case "Ramen":
                                 img.setImageResource(R.drawable.ramens);
@@ -239,24 +210,21 @@ public class Infor_window extends AppCompatActivity{
                     } else {
                         Log.d(TAG, "No such document");
                     }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
                 }
+            } else {
+                Log.d(TAG, "get failed with ", task.getException());
             }
         });
 
         // help button
         final ImageButton helpButton = findViewById(R.id.HelpButton);
-        helpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            // When user settings start button do this
-            public void onClick(View view) {
-                Log.d("VisiFood", "Clicked Settings Button");
-                Intent Hintent = new Intent(Infor_window.this, helpActivity.class);
-                startActivity(Hintent);
-                //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
+        // When user settings start button do this
+        helpButton.setOnClickListener(view -> {
+            Log.d("VisiFood", "Clicked Settings Button");
+            Intent Hintent = new Intent(Infor_window.this, helpActivity.class);
+            startActivity(Hintent);
+            //Intent intent2 = new Intent(MainActivity.this, AllergyActivity.class);
 
-            }
         });
 
         // to hide android's nav bar
