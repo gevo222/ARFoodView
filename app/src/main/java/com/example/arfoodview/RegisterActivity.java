@@ -1,22 +1,17 @@
 package com.example.arfoodview;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.FirebaseApp;
+
+import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -24,8 +19,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mEmailText, mPasswordText;
     Button mRegisterButton, mSignInButton;
     FirebaseAuth fAuth;
-    //Todo: Add progress Bar again
-    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,64 +32,43 @@ public class RegisterActivity extends AppCompatActivity {
         mSignInButton = findViewById(R.id.sign_in_Btn);
 
         fAuth = FirebaseAuth.getInstance();
-        //progressBar = findViewById(R.id.progressBar);
 
-/*
-        if(fAuth.getCurrentUser() != null) {
-           startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        } else {
-            startActivity(new Intent(getApplicationContext(),helpActivity.class));
-        }*/
+        mSignInButton.setOnClickListener(view -> {
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
 
-        mSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-
-            }
         });
 
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = mEmailText.getText().toString().trim();
-                String password = mPasswordText.getText().toString().trim();
+        mRegisterButton.setOnClickListener(view -> {
+            String email = mEmailText.getText().toString().trim();
+            String password = mPasswordText.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email)){
-                    mEmailText.setError("Email is Required");
-                    return;
-                }
-
-                if(TextUtils.isEmpty(password)){
-                    mPasswordText.setError("Password is Required");
-                    return;
-                }
-
-                if(password.length()<6) {
-                    mPasswordText.setError("Password must be 6 or more Characters");
-                    return;
-                }
-
-                //Todo progressBar.setVisibility((View.VISIBLE));
-
-                //register user in firebase
-
-                fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        }
-                        else {
-                            Toast.makeText(RegisterActivity.this,"Error!" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
+            if (TextUtils.isEmpty(email)) {
+                mEmailText.setError("Email is Required");
+                return;
             }
+
+            if (TextUtils.isEmpty(password)) {
+                mPasswordText.setError("Password is Required");
+                return;
+            }
+
+            if (password.length() < 6) {
+                mPasswordText.setError("Password must be 6 or more Characters");
+                return;
+            }
+
+            //register user in firebase
+
+            fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Error!" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
         });
     }
 }
